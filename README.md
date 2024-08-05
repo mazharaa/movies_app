@@ -1,16 +1,11 @@
-# movies_app
+# Flutter Movies App
 
-A new Flutter project.
+A feature-rich Flutter application that allows users to explore movies, manage their watchlist, and view detailed information about films. This app utilizes The Movie Database (TMDb) API to fetch movie data.
 
-## Getting Started
+## Features
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- Browse Now Playing and Popular movies
+- View detailed information about each movie
+- Add movies to Watchlist and Favorites
+- User Profile screen to manage Watchlist and Favorite movies
+- Similar movie recommendations
