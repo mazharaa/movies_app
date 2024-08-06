@@ -45,6 +45,12 @@ dependencies:
   bloc: ^8.1.4  # State management
   flutter_bloc: ^8.1.6  # Flutter widgets for BLoC pattern
 
+  # Networking
+  dio: ^5.5.0+1  # A powerful HTTP client for Dart, which supports Interceptors, FormData, Request Cancellation, File Downloading, Timeout, etc.
+
+  # JSON Handling
+  json_annotation: ^4.9.0  # Defines annotations used by json_serializable to create code for JSON serialization and deserialization
+
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.6
@@ -58,6 +64,7 @@ dev_dependencies:
   freezed: ^2.5.2  # Code generation for immutable classes
   build_runner: ^2.4.11  # Runs code generators
   injectable_generator: ^2.6.2  # Generates dependency injection code
+  json_serializable: ^6.8.0  # Automatically generates code for converting to and from JSON by annotating Dart classes
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
