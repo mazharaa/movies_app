@@ -30,7 +30,20 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  
+  # UI and Responsiveness
+  flutter_screenutil: ^5.9.3  # Help to create responsive UI designs
 
+  # Routing
+  auto_route: ^9.2.0  # Provides a convenient way to handle app navigation
+
+  # State Management and Architecture
+  freezed_annotation: ^2.4.4  # Code generation for data classes
+  fpdart: ^1.1.0  # Functional programming in Dart
+  injectable: ^2.4.4  # Dependency injection
+  get_it: ^7.7.0  # Service locator
+  bloc: ^8.1.4  # State management
+  flutter_bloc: ^8.1.6  # Flutter widgets for BLoC pattern
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -39,6 +52,12 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  
+  # Code Generation Tools
+  auto_route_generator: ^9.0.0  # Generates routes for auto_route
+  freezed: ^2.5.2  # Code generation for immutable classes
+  build_runner: ^2.4.11  # Runs code generators
+  injectable_generator: ^2.6.2  # Generates dependency injection code
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
