@@ -50,7 +50,11 @@ class ApiResponseModel with _$ApiResponseModel {
         );
       }
 
-      return _apiResponse.copyWith(data: _response);
+      if (_response.containsKey('results')) {
+        return _apiResponse.copyWith(data: response.data['results']);
+      }
+
+      return _apiResponse.copyWith(data: response.data);
     } else {
       return ApiResponseModel(
         status: 'Not OK',
