@@ -1,10 +1,12 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:movies_app/core/common/app_theme.dart';
 import 'package:movies_app/core/injection/injection.dart';
 import 'package:movies_app/core/routes/app_router.dart';
 
 void main(List<String> args) {
+  configuredInjection();
   runApp(MoviesApp());
 }
 
@@ -20,6 +22,7 @@ class MoviesApp extends StatelessWidget {
       builder: (context, child) {
         return MaterialApp.router(
           title: 'MoviesApp',
+          theme: AppTheme.theme,
           routerDelegate: AutoRouterDelegate(router),
           routeInformationParser: router.defaultRouteParser(),
         );
