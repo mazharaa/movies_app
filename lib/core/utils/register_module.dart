@@ -14,7 +14,6 @@ abstract class RegisterModule {
       connectTimeout: const Duration(seconds: 12),
       receiveTimeout: const Duration(seconds: 6),
       sendTimeout: const Duration(seconds: 6),
-      headers: null,
       baseUrl: env.baseUrl,
     );
 
