@@ -11,7 +11,7 @@
 import 'package:dio/dio.dart' as _i361;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
-import 'package:movies_app/application/cubit/home_cubit.dart' as _i456;
+import 'package:movies_app/application/home/home_cubit.dart' as _i94;
 import 'package:movies_app/core/env/env.dart' as _i415;
 import 'package:movies_app/core/routes/app_router.dart' as _i387;
 import 'package:movies_app/core/utils/register_module.dart' as _i525;
@@ -51,8 +51,8 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i88.DetailsRepository(gh<_i346.DetailsDataSources>()));
     gh.lazySingleton<_i1028.IHomeRepository>(
         () => _i560.HomeRepository(gh<_i651.HomeDataSources>()));
-    gh.factory<_i456.HomeCubit>(
-        () => _i456.HomeCubit(gh<_i1028.IHomeRepository>()));
+    gh.factory<_i94.HomeCubit>(
+        () => _i94.HomeCubit(gh<_i1028.IHomeRepository>()));
     return this;
   }
 }

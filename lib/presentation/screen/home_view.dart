@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movies_app/application/cubit/home_cubit.dart';
+import 'package:movies_app/application/home/home_cubit.dart';
 import 'package:movies_app/core/injection/injection.dart';
 import 'package:movies_app/core/utils/text_theme_extension.dart';
 import 'package:movies_app/core/utils/ui_helper.dart';
