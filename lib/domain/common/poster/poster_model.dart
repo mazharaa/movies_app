@@ -3,7 +3,7 @@ import 'package:movies_app/core/common/api_key.dart';
 import 'package:movies_app/core/common/api_path_constants.dart';
 
 part 'poster_model.freezed.dart';
-part 'poster_model.g.dart';
+// part 'poster_model.g.dart';
 
 @freezed
 class PosterModel with _$PosterModel {
@@ -11,12 +11,20 @@ class PosterModel with _$PosterModel {
 
   factory PosterModel({
     required int id,
-    @JsonKey(name: 'poster_path') required String image,
+    required String image,
   }) = _PosterModel;
 
-  factory PosterModel.fromJson(Map<String, dynamic> json) =>
-      _$PosterModelFromJson(json);
+  factory PosterModel.fromJson(Map<String, dynamic> json) {
+    String image = '';
 
-  String get imageUrl =>
-      '${ApiPathConstants.imgUrlPrefix}$image?api_key=${ApiKey.key}';
+    if (json['poster_path'] != null) {
+      image =
+          '${ApiPathConstants.imgUrlPrefix}${json['poster_path']}?api_key=${ApiKey.key}';
+    }
+
+    return PosterModel(
+      id: json['id'] as int,
+      image: image,
+    );
+  }
 }

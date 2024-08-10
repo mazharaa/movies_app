@@ -14,17 +14,11 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-PosterModel _$PosterModelFromJson(Map<String, dynamic> json) {
-  return _PosterModel.fromJson(json);
-}
-
 /// @nodoc
 mixin _$PosterModel {
   int get id => throw _privateConstructorUsedError;
-  @JsonKey(name: 'poster_path')
   String get image => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $PosterModelCopyWith<PosterModel> get copyWith =>
       throw _privateConstructorUsedError;
@@ -36,7 +30,7 @@ abstract class $PosterModelCopyWith<$Res> {
           PosterModel value, $Res Function(PosterModel) then) =
       _$PosterModelCopyWithImpl<$Res, PosterModel>;
   @useResult
-  $Res call({int id, @JsonKey(name: 'poster_path') String image});
+  $Res call({int id, String image});
 }
 
 /// @nodoc
@@ -76,7 +70,7 @@ abstract class _$$PosterModelImplCopyWith<$Res>
       __$$PosterModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, @JsonKey(name: 'poster_path') String image});
+  $Res call({int id, String image});
 }
 
 /// @nodoc
@@ -107,19 +101,13 @@ class __$$PosterModelImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
-class _$PosterModelImpl extends _PosterModel {
-  _$PosterModelImpl(
-      {required this.id, @JsonKey(name: 'poster_path') required this.image})
-      : super._();
 
-  factory _$PosterModelImpl.fromJson(Map<String, dynamic> json) =>
-      _$$PosterModelImplFromJson(json);
+class _$PosterModelImpl extends _PosterModel {
+  _$PosterModelImpl({required this.id, required this.image}) : super._();
 
   @override
   final int id;
   @override
-  @JsonKey(name: 'poster_path')
   final String image;
 
   @override
@@ -136,7 +124,6 @@ class _$PosterModelImpl extends _PosterModel {
             (identical(other.image, image) || other.image == image));
   }
 
-  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, id, image);
 
@@ -145,29 +132,16 @@ class _$PosterModelImpl extends _PosterModel {
   @pragma('vm:prefer-inline')
   _$$PosterModelImplCopyWith<_$PosterModelImpl> get copyWith =>
       __$$PosterModelImplCopyWithImpl<_$PosterModelImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$PosterModelImplToJson(
-      this,
-    );
-  }
 }
 
 abstract class _PosterModel extends PosterModel {
-  factory _PosterModel(
-          {required final int id,
-          @JsonKey(name: 'poster_path') required final String image}) =
+  factory _PosterModel({required final int id, required final String image}) =
       _$PosterModelImpl;
   _PosterModel._() : super._();
-
-  factory _PosterModel.fromJson(Map<String, dynamic> json) =
-      _$PosterModelImpl.fromJson;
 
   @override
   int get id;
   @override
-  @JsonKey(name: 'poster_path')
   String get image;
   @override
   @JsonKey(ignore: true)

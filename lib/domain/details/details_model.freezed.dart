@@ -18,15 +18,11 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$DetailsModel {
   int get id => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
-  @JsonKey(name: 'release_date')
   String get releaseYear => throw _privateConstructorUsedError;
   int get runtime => throw _privateConstructorUsedError;
-  @JsonKey(name: 'genres')
   String get genre => throw _privateConstructorUsedError;
   String get overview => throw _privateConstructorUsedError;
-  @JsonKey(name: 'poster_path')
   String get image => throw _privateConstructorUsedError;
-  @JsonKey(name: 'backdrop_path')
   String get backdrop => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -43,12 +39,12 @@ abstract class $DetailsModelCopyWith<$Res> {
   $Res call(
       {int id,
       String title,
-      @JsonKey(name: 'release_date') String releaseYear,
+      String releaseYear,
       int runtime,
-      @JsonKey(name: 'genres') String genre,
+      String genre,
       String overview,
-      @JsonKey(name: 'poster_path') String image,
-      @JsonKey(name: 'backdrop_path') String backdrop});
+      String image,
+      String backdrop});
 }
 
 /// @nodoc
@@ -121,12 +117,12 @@ abstract class _$$DetailsModelImplCopyWith<$Res>
   $Res call(
       {int id,
       String title,
-      @JsonKey(name: 'release_date') String releaseYear,
+      String releaseYear,
       int runtime,
-      @JsonKey(name: 'genres') String genre,
+      String genre,
       String overview,
-      @JsonKey(name: 'poster_path') String image,
-      @JsonKey(name: 'backdrop_path') String backdrop});
+      String image,
+      String backdrop});
 }
 
 /// @nodoc
@@ -192,12 +188,12 @@ class _$DetailsModelImpl extends _DetailsModel {
   _$DetailsModelImpl(
       {required this.id,
       required this.title,
-      @JsonKey(name: 'release_date') required this.releaseYear,
+      required this.releaseYear,
       required this.runtime,
-      @JsonKey(name: 'genres') required this.genre,
+      required this.genre,
       required this.overview,
-      @JsonKey(name: 'poster_path') required this.image,
-      @JsonKey(name: 'backdrop_path') required this.backdrop})
+      required this.image,
+      required this.backdrop})
       : super._();
 
   @override
@@ -205,20 +201,16 @@ class _$DetailsModelImpl extends _DetailsModel {
   @override
   final String title;
   @override
-  @JsonKey(name: 'release_date')
   final String releaseYear;
   @override
   final int runtime;
   @override
-  @JsonKey(name: 'genres')
   final String genre;
   @override
   final String overview;
   @override
-  @JsonKey(name: 'poster_path')
   final String image;
   @override
-  @JsonKey(name: 'backdrop_path')
   final String backdrop;
 
   @override
@@ -257,15 +249,14 @@ class _$DetailsModelImpl extends _DetailsModel {
 
 abstract class _DetailsModel extends DetailsModel {
   factory _DetailsModel(
-          {required final int id,
-          required final String title,
-          @JsonKey(name: 'release_date') required final String releaseYear,
-          required final int runtime,
-          @JsonKey(name: 'genres') required final String genre,
-          required final String overview,
-          @JsonKey(name: 'poster_path') required final String image,
-          @JsonKey(name: 'backdrop_path') required final String backdrop}) =
-      _$DetailsModelImpl;
+      {required final int id,
+      required final String title,
+      required final String releaseYear,
+      required final int runtime,
+      required final String genre,
+      required final String overview,
+      required final String image,
+      required final String backdrop}) = _$DetailsModelImpl;
   _DetailsModel._() : super._();
 
   @override
@@ -273,20 +264,16 @@ abstract class _DetailsModel extends DetailsModel {
   @override
   String get title;
   @override
-  @JsonKey(name: 'release_date')
   String get releaseYear;
   @override
   int get runtime;
   @override
-  @JsonKey(name: 'genres')
   String get genre;
   @override
   String get overview;
   @override
-  @JsonKey(name: 'poster_path')
   String get image;
   @override
-  @JsonKey(name: 'backdrop_path')
   String get backdrop;
   @override
   @JsonKey(ignore: true)

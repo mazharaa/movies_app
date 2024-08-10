@@ -12,12 +12,12 @@ class DetailsModel with _$DetailsModel {
   factory DetailsModel({
     required int id,
     required String title,
-    @JsonKey(name: 'release_date') required String releaseYear,
+    required String releaseYear,
     required int runtime,
-    @JsonKey(name: 'genres') required String genre,
+    required String genre,
     required String overview,
-    @JsonKey(name: 'poster_path') required String image,
-    @JsonKey(name: 'backdrop_path') required String backdrop,
+    required String image,
+    required String backdrop,
   }) = _DetailsModel;
 
   factory DetailsModel.fromJson(Map<String, dynamic> json) {
