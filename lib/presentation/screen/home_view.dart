@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_app/application/cubit/home_cubit.dart';
-import 'package:movies_app/core/common/color_const.dart';
 import 'package:movies_app/core/injection/injection.dart';
 import 'package:movies_app/core/utils/text_theme_extension.dart';
 import 'package:movies_app/core/utils/ui_helper.dart';
@@ -33,8 +32,9 @@ class HomeView extends StatelessWidget {
                     Container(
                       height: 70.h,
                       alignment: Alignment.centerLeft,
-                      child: const Text(
+                      child: Text(
                         'Now Playing',
+                        style: context.textTheme.bodyLarge,
                       ),
                     ),
                   ],
@@ -45,10 +45,11 @@ class HomeView extends StatelessWidget {
                     ? Center(child: UiHelper.loading())
                     : const SizedBox.shrink(),
                 (response) => response.fold(
-                  (failure) =>
-                      failure.when(fromServerSide: (value) => Text(value)),
+                  (failure) => failure.when(
+                    fromServerSide: (value) => Text(value),
+                  ),
                   (response) => SizedBox(
-                    height: 210.h,
+                    height: 210,
                     child: ListView.separated(
                       shrinkWrap: true,
                       scrollDirection: Axis.horizontal,
@@ -82,32 +83,48 @@ class HomeView extends StatelessWidget {
                       margin: UiHelper.padding(top: 30.h),
                       height: 60.h,
                       alignment: Alignment.centerLeft,
-                      child: const Text(
+                      child: Text(
                         'Popular',
+                        style: context.textTheme.bodyLarge,
                       ),
                     ),
-                    GridView.builder(
-                      shrinkWrap: true,
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2,
-                          childAspectRatio: 3.w / 4.h,
-                          mainAxisSpacing: 18.h,
-                          crossAxisSpacing: 10.w),
-                      itemCount: 20,
-                      physics: const NeverScrollableScrollPhysics(),
-                      padding: UiHelper.padding(top: 0, bottom: 20.h),
-                      itemBuilder: (context, index) => SizedBox(
-                        width: 100.w,
-                        child: Card(
-                          child: Text(
-                            '$index',
-                            style: context.textTheme.bodyMedium?.copyWith(
-                              color: ColorConst.black,
-                            ),
+                    state.popularFailureOrSucceed.fold(
+                      () => state.nowPlayingIsLoading
+                          ? Center(child: UiHelper.loading())
+                          : const SizedBox.shrink(),
+                      (response) => response.fold(
+                        (failure) => failure.when(
+                          fromServerSide: (value) => Text(value),
+                        ),
+                        (response) => GridView.builder(
+                          shrinkWrap: true,
+                          gridDelegate:
+                              SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2,
+                            childAspectRatio: 3.w / 4.h,
+                            mainAxisSpacing: 18.h,
+                            crossAxisSpacing: 10.w,
                           ),
+                          itemCount: 20,
+                          physics: const NeverScrollableScrollPhysics(),
+                          padding: UiHelper.padding(top: 0, bottom: 20.h),
+                          itemBuilder: (context, index) {
+                            final data = response[index];
+                            return SizedBox(
+                              width: 100.w,
+                              child: Card(
+                                elevation: 0,
+                                clipBehavior: Clip.antiAlias,
+                                child: Image.network(
+                                  data.imageUrl,
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                            );
+                          },
                         ),
                       ),
-                    )
+                    ),
                   ],
                 ),
               ),
