@@ -49,14 +49,16 @@ class AppTheme {
     ),
     headlineLarge: GoogleFonts.poppins(
       fontSize: 14.sp,
-      fontWeight: FontWeight.bold,
+      fontWeight: FontWeight.w700,
     ),
     headlineMedium: GoogleFonts.poppins(
       fontSize: 12.sp,
-      fontWeight: FontWeight.bold,
+      fontWeight: FontWeight.w700,
     ),
-    headlineSmall:
-        GoogleFonts.poppins(fontSize: 10.sp, fontWeight: FontWeight.bold),
+    headlineSmall: GoogleFonts.poppins(
+      fontSize: 10.sp,
+      fontWeight: FontWeight.w700,
+    ),
     titleLarge: GoogleFonts.poppins(fontSize: 20.sp),
     titleMedium: GoogleFonts.poppins(
       fontSize: 18.sp,
