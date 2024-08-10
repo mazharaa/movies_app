@@ -9,11 +9,11 @@ part of 'poster_model.dart';
 _$PosterModelImpl _$$PosterModelImplFromJson(Map<String, dynamic> json) =>
     _$PosterModelImpl(
       id: (json['id'] as num).toInt(),
-      image: json['image'] as String,
+      image: json['poster_path'] as String,
     );
 
 Map<String, dynamic> _$$PosterModelImplToJson(_$PosterModelImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'image': instance.image,
+      'poster_path': instance.image,
     };

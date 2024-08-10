@@ -21,6 +21,7 @@ PosterModel _$PosterModelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$PosterModel {
   int get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'poster_path')
   String get image => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -35,7 +36,7 @@ abstract class $PosterModelCopyWith<$Res> {
           PosterModel value, $Res Function(PosterModel) then) =
       _$PosterModelCopyWithImpl<$Res, PosterModel>;
   @useResult
-  $Res call({int id, String image});
+  $Res call({int id, @JsonKey(name: 'poster_path') String image});
 }
 
 /// @nodoc
@@ -75,7 +76,7 @@ abstract class _$$PosterModelImplCopyWith<$Res>
       __$$PosterModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, String image});
+  $Res call({int id, @JsonKey(name: 'poster_path') String image});
 }
 
 /// @nodoc
@@ -108,7 +109,9 @@ class __$$PosterModelImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$PosterModelImpl extends _PosterModel {
-  _$PosterModelImpl({required this.id, required this.image}) : super._();
+  _$PosterModelImpl(
+      {required this.id, @JsonKey(name: 'poster_path') required this.image})
+      : super._();
 
   factory _$PosterModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$PosterModelImplFromJson(json);
@@ -116,6 +119,7 @@ class _$PosterModelImpl extends _PosterModel {
   @override
   final int id;
   @override
+  @JsonKey(name: 'poster_path')
   final String image;
 
   @override
@@ -151,7 +155,9 @@ class _$PosterModelImpl extends _PosterModel {
 }
 
 abstract class _PosterModel extends PosterModel {
-  factory _PosterModel({required final int id, required final String image}) =
+  factory _PosterModel(
+          {required final int id,
+          @JsonKey(name: 'poster_path') required final String image}) =
       _$PosterModelImpl;
   _PosterModel._() : super._();
 
@@ -161,6 +167,7 @@ abstract class _PosterModel extends PosterModel {
   @override
   int get id;
   @override
+  @JsonKey(name: 'poster_path')
   String get image;
   @override
   @JsonKey(ignore: true)
