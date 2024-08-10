@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:movies_app/core/common/color_const.dart';
 
 class UiHelper {
   UiHelper._();
@@ -30,5 +31,22 @@ class UiHelper {
 
   static double setWidth(double width) {
     return ScreenUtil().setWidth(width);
+  }
+
+  static Widget loading(
+      {Color? color, double? width, double? height, double? value}) {
+    return SizedBox(
+      width: width ?? UiHelper.setSp(20),
+      height: height ?? UiHelper.setSp(20),
+      child: Center(
+        child: CircularProgressIndicator(
+          value: value,
+          strokeWidth: 2.0,
+          valueColor: AlwaysStoppedAnimation<Color>(
+            color ?? ColorConst.blue,
+          ),
+        ),
+      ),
+    );
   }
 }
