@@ -7,6 +7,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:movies_app/application/details/details_cubit.dart';
 import 'package:movies_app/core/common/color_const.dart';
 import 'package:movies_app/core/injection/injection.dart';
+import 'package:movies_app/core/routes/app_router.dart';
 import 'package:movies_app/core/utils/text_theme_extension.dart';
 import 'package:movies_app/core/utils/ui_helper.dart';
 
@@ -26,6 +27,7 @@ class DetailsScreen extends StatelessWidget {
           title: const Text('Detail'),
           leading: GestureDetector(
             child: const Icon(Icons.arrow_back),
+            onTap: () => context.router.maybePop(),
           ),
         ),
         body: BlocBuilder<DetailsCubit, DetailsState>(
@@ -212,12 +214,17 @@ class DetailsScreen extends StatelessWidget {
                               itemBuilder: (context, i) {
                                 return SizedBox(
                                   width: 100.w,
-                                  child: Card(
-                                    elevation: 0,
-                                    clipBehavior: Clip.antiAlias,
-                                    child: Image.network(
-                                      similarData[i].imageUrl,
-                                      fit: BoxFit.cover,
+                                  child: GestureDetector(
+                                    child: Card(
+                                      elevation: 0,
+                                      clipBehavior: Clip.antiAlias,
+                                      child: Image.network(
+                                        similarData[i].image,
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
+                                    onTap: () => context.router.push(
+                                      DetailsRoute(id: similarData[i].id),
                                     ),
                                   ),
                                 );

@@ -1,8 +1,10 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_app/application/home/home_cubit.dart';
 import 'package:movies_app/core/injection/injection.dart';
+import 'package:movies_app/core/routes/app_router.dart';
 import 'package:movies_app/core/utils/text_theme_extension.dart';
 import 'package:movies_app/core/utils/ui_helper.dart';
 
@@ -58,12 +60,17 @@ class HomeView extends StatelessWidget {
                         final data = response[index];
                         return SizedBox(
                           width: 144.62.w,
-                          child: Card(
-                            elevation: 0,
-                            clipBehavior: Clip.antiAlias,
-                            child: Image.network(
-                              data.imageUrl,
-                              fit: BoxFit.cover,
+                          child: GestureDetector(
+                            child: Card(
+                              elevation: 0,
+                              clipBehavior: Clip.antiAlias,
+                              child: Image.network(
+                                data.image,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                            onTap: () => context.router.push(
+                              DetailsRoute(id: data.id),
                             ),
                           ),
                         );
@@ -112,12 +119,17 @@ class HomeView extends StatelessWidget {
                             final data = response[index];
                             return SizedBox(
                               width: 100.w,
-                              child: Card(
-                                elevation: 0,
-                                clipBehavior: Clip.antiAlias,
-                                child: Image.network(
-                                  data.imageUrl,
-                                  fit: BoxFit.cover,
+                              child: GestureDetector(
+                                child: Card(
+                                  elevation: 0,
+                                  clipBehavior: Clip.antiAlias,
+                                  child: Image.network(
+                                    data.image,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                                onTap: () => context.router.push(
+                                  DetailsRoute(id: data.id),
                                 ),
                               ),
                             );
