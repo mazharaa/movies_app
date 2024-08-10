@@ -19,128 +19,130 @@ class HomeView extends StatelessWidget {
       create: (context) => getIt<HomeCubit>(),
       child: BlocBuilder<HomeCubit, HomeState>(
         builder: (context, state) {
-          return Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: UiHelper.padding(horizontal: 24.w),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'What do you want to watch?',
-                      style: context.textTheme.titleMedium,
-                    ),
-                    Container(
-                      height: 70.h,
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        'Now Playing',
-                        style: context.textTheme.bodyLarge,
+          return SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: UiHelper.padding(horizontal: 24.w),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'What do you want to watch?',
+                        style: context.textTheme.titleMedium,
                       ),
-                    ),
-                  ],
-                ),
-              ),
-              state.nowPlayingFailureOrSucceed.fold(
-                () => state.nowPlayingIsLoading
-                    ? Center(child: UiHelper.loading())
-                    : const SizedBox.shrink(),
-                (response) => response.fold(
-                  (failure) => failure.when(
-                    fromServerSide: (value) => Text(value),
+                      Container(
+                        height: 70.h,
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          'Now Playing',
+                          style: context.textTheme.bodyLarge,
+                        ),
+                      ),
+                    ],
                   ),
-                  (response) => SizedBox(
-                    height: 210,
-                    child: ListView.separated(
-                      shrinkWrap: true,
-                      scrollDirection: Axis.horizontal,
-                      itemCount: 6,
-                      itemBuilder: (context, index) {
-                        final data = response[index];
-                        return SizedBox(
-                          width: 144.62.w,
-                          child: GestureDetector(
-                            child: Card(
-                              elevation: 0,
-                              clipBehavior: Clip.antiAlias,
-                              child: Image.network(
-                                data.image,
-                                fit: BoxFit.cover,
+                ),
+                state.nowPlayingFailureOrSucceed.fold(
+                  () => state.nowPlayingIsLoading
+                      ? Center(child: UiHelper.loading())
+                      : const SizedBox.shrink(),
+                  (response) => response.fold(
+                    (failure) => failure.when(
+                      fromServerSide: (value) => Text(value),
+                    ),
+                    (response) => SizedBox(
+                      height: 210,
+                      child: ListView.separated(
+                        shrinkWrap: true,
+                        scrollDirection: Axis.horizontal,
+                        itemCount: 6,
+                        itemBuilder: (context, index) {
+                          final data = response[index];
+                          return SizedBox(
+                            width: 144.62.w,
+                            child: GestureDetector(
+                              child: Card(
+                                elevation: 0,
+                                clipBehavior: Clip.antiAlias,
+                                child: Image.network(
+                                  data.image,
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                              onTap: () => context.router.push(
+                                DetailsRoute(id: data.id),
                               ),
                             ),
-                            onTap: () => context.router.push(
-                              DetailsRoute(id: data.id),
-                            ),
-                          ),
-                        );
-                      },
-                      separatorBuilder: (context, index) =>
-                          SizedBox(width: 10.w),
+                          );
+                        },
+                        separatorBuilder: (context, index) =>
+                            SizedBox(width: 10.w),
+                      ),
                     ),
                   ),
                 ),
-              ),
-              Padding(
-                padding: UiHelper.padding(horizontal: 24.w),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      margin: UiHelper.padding(top: 30.h),
-                      height: 60.h,
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        'Popular',
-                        style: context.textTheme.bodyLarge,
-                      ),
-                    ),
-                    state.popularFailureOrSucceed.fold(
-                      () => state.nowPlayingIsLoading
-                          ? Center(child: UiHelper.loading())
-                          : const SizedBox.shrink(),
-                      (response) => response.fold(
-                        (failure) => failure.when(
-                          fromServerSide: (value) => Text(value),
+                Padding(
+                  padding: UiHelper.padding(horizontal: 24.w),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        margin: UiHelper.padding(top: 30.h),
+                        height: 60.h,
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          'Popular',
+                          style: context.textTheme.bodyLarge,
                         ),
-                        (response) => GridView.builder(
-                          shrinkWrap: true,
-                          gridDelegate:
-                              SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2,
-                            childAspectRatio: 3.w / 4.h,
-                            mainAxisSpacing: 18.h,
-                            crossAxisSpacing: 10.w,
+                      ),
+                      state.popularFailureOrSucceed.fold(
+                        () => state.nowPlayingIsLoading
+                            ? Center(child: UiHelper.loading())
+                            : const SizedBox.shrink(),
+                        (response) => response.fold(
+                          (failure) => failure.when(
+                            fromServerSide: (value) => Text(value),
                           ),
-                          itemCount: 20,
-                          physics: const NeverScrollableScrollPhysics(),
-                          padding: UiHelper.padding(top: 0, bottom: 20.h),
-                          itemBuilder: (context, index) {
-                            final data = response[index];
-                            return SizedBox(
-                              width: 100.w,
-                              child: GestureDetector(
-                                child: Card(
-                                  elevation: 0,
-                                  clipBehavior: Clip.antiAlias,
-                                  child: Image.network(
-                                    data.image,
-                                    fit: BoxFit.cover,
+                          (response) => GridView.builder(
+                            shrinkWrap: true,
+                            gridDelegate:
+                                SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 2,
+                              childAspectRatio: 3.w / 4.h,
+                              mainAxisSpacing: 18.h,
+                              crossAxisSpacing: 10.w,
+                            ),
+                            itemCount: 20,
+                            physics: const NeverScrollableScrollPhysics(),
+                            padding: UiHelper.padding(top: 0, bottom: 20.h),
+                            itemBuilder: (context, index) {
+                              final data = response[index];
+                              return SizedBox(
+                                width: 100.w,
+                                child: GestureDetector(
+                                  child: Card(
+                                    elevation: 0,
+                                    clipBehavior: Clip.antiAlias,
+                                    child: Image.network(
+                                      data.image,
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                  onTap: () => context.router.push(
+                                    DetailsRoute(id: data.id),
                                   ),
                                 ),
-                                onTap: () => context.router.push(
-                                  DetailsRoute(id: data.id),
-                                ),
-                              ),
-                            );
-                          },
+                              );
+                            },
+                          ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           );
         },
       ),

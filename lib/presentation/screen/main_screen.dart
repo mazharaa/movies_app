@@ -44,18 +44,16 @@ class MainScreen extends StatelessWidget {
               ),
             ],
           ),
-          body: SingleChildScrollView(
-            child: Padding(
-              padding: UiHelper.padding(
-                top: 43.h,
-              ),
-              child: IndexedStack(
-                index: state.selectedIndex,
-                children: const [
-                  HomeView(),
-                  UserView(),
-                ],
-              ),
+          body: Padding(
+            padding: UiHelper.padding(
+              top: 43.h,
+            ),
+            child: IndexedStack(
+              index: state.selectedIndex,
+              children: const [
+                HomeView(),
+                UserView(),
+              ],
             ),
           ),
         );
