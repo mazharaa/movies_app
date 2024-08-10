@@ -9,12 +9,11 @@ class ApiConfiguration {
         connectTimeout: const Duration(seconds: 12),
         receiveTimeout: const Duration(seconds: 6),
         sendTimeout: const Duration(seconds: 6),
-        headers: null,
         baseUrl: baseUrl,
       );
 
   static Future<ApiResponseModel> handleApiResponse(Response response) async {
-    if (!ApiResponseModel.isFormatValid(response)) {
+    if (!ApiResponseModel.isFormatValid(response.data)) {
       return Future.error(ApiResponseNotValidException());
     }
 
