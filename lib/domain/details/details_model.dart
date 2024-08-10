@@ -44,7 +44,7 @@ class DetailsModel with _$DetailsModel {
 
     if (json['backdrop_path'] != null) {
       backdrop =
-          '${ApiPathConstants.imgUrlPrefix}${json['backdrop_path']}?api_key=${ApiKey.key}';
+          '${ApiPathConstants.backdropUrlPrefix}${json['backdrop_path']}?api_key=${ApiKey.key}';
     }
 
     return DetailsModel(

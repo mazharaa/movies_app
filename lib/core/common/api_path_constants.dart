@@ -5,6 +5,7 @@ class ApiPathConstants {
   static String nowPlaying = '/movie/now_playing';
   static String popular = '/movie/popular';
   static String imgUrlPrefix = 'http://image.tmdb.org/t/p/w185';
+  static String backdropUrlPrefix = 'http://image.tmdb.org/t/p/w300';
   static String movieDetails(int movieId) => '/movie/$movieId';
   static String similarMovie(int movieId) => '${movieDetails(movieId)}/similar';
   static String addToFavorite(accountId) => '/account/$accountId/favorite';
