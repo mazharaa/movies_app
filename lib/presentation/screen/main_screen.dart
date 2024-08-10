@@ -46,7 +46,9 @@ class MainScreen extends StatelessWidget {
           ),
           body: SingleChildScrollView(
             child: Padding(
-              padding: UiHelper.padding(horizontal: 24.w, top: 43.h),
+              padding: UiHelper.padding(
+                top: 43.h,
+              ),
               child: IndexedStack(
                 index: state.selectedIndex,
                 children: const [
