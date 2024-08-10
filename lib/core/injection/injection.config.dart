@@ -52,10 +52,8 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i88.DetailsRepository(gh<_i346.DetailsDataSources>()));
     gh.lazySingleton<_i1028.IHomeRepository>(
         () => _i560.HomeRepository(gh<_i651.HomeDataSources>()));
-    gh.factory<_i537.DetailsCubit>(() => _i537.DetailsCubit(
-          gh<_i164.IDetailsRepository>(),
-          gh<int>(),
-        ));
+    gh.factory<_i537.DetailsCubit>(
+        () => _i537.DetailsCubit(gh<_i164.IDetailsRepository>()));
     gh.factory<_i94.HomeCubit>(
         () => _i94.HomeCubit(gh<_i1028.IHomeRepository>()));
     return this;

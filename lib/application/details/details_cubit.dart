@@ -14,10 +14,7 @@ part 'details_cubit.freezed.dart';
 class DetailsCubit extends Cubit<DetailsState> {
   final IDetailsRepository _iDetailsRepository;
 
-  DetailsCubit(this._iDetailsRepository, int id)
-      : super(DetailsState.initial()) {
-    showsDetails(id);
-  }
+  DetailsCubit(this._iDetailsRepository) : super(DetailsState.initial());
 
   Future<void> showsDetails(int id) async {
     emit(state.copyWith(
