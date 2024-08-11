@@ -2,11 +2,13 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:movies_app/application/fav_watchlist/fav_watchlist_cubit.dart';
 import 'package:movies_app/application/home/home_cubit.dart';
 import 'package:movies_app/core/injection/injection.dart';
 import 'package:movies_app/core/routes/app_router.dart';
 import 'package:movies_app/core/utils/text_theme_extension.dart';
 import 'package:movies_app/core/utils/ui_helper.dart';
+import 'package:movies_app/presentation/widget/poster_card.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({
@@ -17,8 +19,11 @@ class HomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => getIt<HomeCubit>(),
-      child: BlocBuilder<HomeCubit, HomeState>(
-        builder: (context, state) {
+      child: Builder(
+        builder: (context) {
+          final homeState = context.watch<HomeCubit>().state;
+          final favWatchState = context.watch<FavWatchlistCubit>().state;
+          final favWatchCubit = context.read<FavWatchlistCubit>();
           return SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -43,8 +48,8 @@ class HomeView extends StatelessWidget {
                     ],
                   ),
                 ),
-                state.nowPlayingFailureOrSucceed.fold(
-                  () => state.nowPlayingIsLoading
+                homeState.nowPlayingFailureOrSucceed.fold(
+                  () => homeState.nowPlayingIsLoading
                       ? Center(child: UiHelper.loading())
                       : const SizedBox.shrink(),
                   (response) => response.fold(
@@ -61,18 +66,15 @@ class HomeView extends StatelessWidget {
                           final data = response[index];
                           return SizedBox(
                             width: 144.62.w,
-                            child: GestureDetector(
-                              child: Card(
-                                elevation: 0,
-                                clipBehavior: Clip.antiAlias,
-                                child: Image.network(
-                                  data.image,
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                              onTap: () => context.router.push(
-                                DetailsRoute(id: data.id),
-                              ),
+                            child: PosterCard(
+                              data: data,
+                              isFavorite: favWatchState.isFav(data),
+                              isWatchlisted: favWatchState.isListed(data),
+                              onTap: () => context.router
+                                  .push(DetailsRoute(id: data.id)),
+                              toggleFav: () => favWatchCubit.toggleFav(data),
+                              toggleAdd: () =>
+                                  favWatchCubit.toggleWatchlist(data),
                             ),
                           );
                         },
@@ -96,8 +98,8 @@ class HomeView extends StatelessWidget {
                           style: context.textTheme.bodyLarge,
                         ),
                       ),
-                      state.popularFailureOrSucceed.fold(
-                        () => state.nowPlayingIsLoading
+                      homeState.popularFailureOrSucceed.fold(
+                        () => homeState.nowPlayingIsLoading
                             ? Center(child: UiHelper.loading())
                             : const SizedBox.shrink(),
                         (response) => response.fold(
@@ -111,28 +113,23 @@ class HomeView extends StatelessWidget {
                               crossAxisCount: 2,
                               childAspectRatio: 3.w / 4.h,
                               mainAxisSpacing: 18.h,
-                              crossAxisSpacing: 10.w,
+                              crossAxisSpacing: 18.w,
                             ),
                             itemCount: 20,
                             physics: const NeverScrollableScrollPhysics(),
                             padding: UiHelper.padding(top: 0, bottom: 20.h),
                             itemBuilder: (context, index) {
                               final data = response[index];
-                              return SizedBox(
-                                width: 100.w,
-                                child: GestureDetector(
-                                  child: Card(
-                                    elevation: 0,
-                                    clipBehavior: Clip.antiAlias,
-                                    child: Image.network(
-                                      data.image,
-                                      fit: BoxFit.cover,
-                                    ),
-                                  ),
-                                  onTap: () => context.router.push(
-                                    DetailsRoute(id: data.id),
-                                  ),
+                              return PosterCard(
+                                data: data,
+                                isFavorite: favWatchState.isFav(data),
+                                isWatchlisted: favWatchState.isListed(data),
+                                onTap: () => context.router.push(
+                                  DetailsRoute(id: data.id),
                                 ),
+                                toggleFav: () => favWatchCubit.toggleFav(data),
+                                toggleAdd: () =>
+                                    favWatchCubit.toggleWatchlist(data),
                               );
                             },
                           ),
