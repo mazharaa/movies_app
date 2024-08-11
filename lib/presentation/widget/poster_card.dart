@@ -9,17 +9,21 @@ class PosterCard extends StatelessWidget {
     required this.data,
     required this.isFavorite,
     required this.isWatchlisted,
+    required this.showDownloadButton,
     this.onTap,
     this.toggleFav,
     this.toggleAdd,
+    this.downloadOnTap,
   });
 
   final PosterModel data;
   final bool isFavorite;
   final bool isWatchlisted;
+  final bool showDownloadButton;
   final GestureTapCallback? onTap;
   final GestureTapCallback? toggleFav;
   final GestureTapCallback? toggleAdd;
+  final GestureTapCallback? downloadOnTap;
 
   @override
   Widget build(BuildContext context) {
@@ -66,17 +70,20 @@ class PosterCard extends StatelessWidget {
                   ),
                 ),
               ),
-              Positioned(
-                left: 0,
-                bottom: 0,
-                child: GestureDetector(
-                  child: const Icon(
-                    Icons.download,
-                    color: ColorConst.lightGrey,
-                    size: 20,
-                  ),
-                ),
-              )
+              showDownloadButton
+                  ? Positioned(
+                      left: 0,
+                      bottom: 0,
+                      child: GestureDetector(
+                        onTap: downloadOnTap,
+                        child: const Icon(
+                          Icons.download,
+                          color: ColorConst.lightGrey,
+                          size: 20,
+                        ),
+                      ),
+                    )
+                  : const SizedBox.shrink(),
             ],
           ),
         ),

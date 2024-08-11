@@ -15,6 +15,21 @@ class HomeView extends StatelessWidget {
     super.key,
   });
 
+  void _showDialog(BuildContext context, bool isDownloaded) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return SimpleDialog(
+          children: [
+            Text(
+              isDownloaded ? 'Image downloaded' : 'Failed to download image',
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -23,6 +38,7 @@ class HomeView extends StatelessWidget {
         builder: (context) {
           final homeState = context.watch<HomeCubit>().state;
           final favWatchState = context.watch<FavWatchlistCubit>().state;
+          final homeCubit = context.read<HomeCubit>();
           final favWatchCubit = context.read<FavWatchlistCubit>();
           return SingleChildScrollView(
             child: Column(
@@ -68,6 +84,7 @@ class HomeView extends StatelessWidget {
                             width: 144.62.w,
                             child: PosterCard(
                               data: data,
+                              showDownloadButton: true,
                               isFavorite: favWatchState.isFav(data),
                               isWatchlisted: favWatchState.isListed(data),
                               onTap: () => context.router
@@ -75,6 +92,9 @@ class HomeView extends StatelessWidget {
                               toggleFav: () => favWatchCubit.toggleFav(data),
                               toggleAdd: () =>
                                   favWatchCubit.toggleWatchlist(data),
+                              downloadOnTap: () async {
+                                await homeCubit.downloadImage(data.image);
+                              },
                             ),
                           );
                         },
@@ -122,6 +142,7 @@ class HomeView extends StatelessWidget {
                               final data = response[index];
                               return PosterCard(
                                 data: data,
+                                showDownloadButton: true,
                                 isFavorite: favWatchState.isFav(data),
                                 isWatchlisted: favWatchState.isListed(data),
                                 onTap: () => context.router.push(
@@ -130,6 +151,9 @@ class HomeView extends StatelessWidget {
                                 toggleFav: () => favWatchCubit.toggleFav(data),
                                 toggleAdd: () =>
                                     favWatchCubit.toggleWatchlist(data),
+                                downloadOnTap: () async {
+                                  await homeCubit.downloadImage(data.image);
+                                },
                               );
                             },
                           ),

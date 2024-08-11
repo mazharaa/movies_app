@@ -41,20 +41,26 @@ class ApiResponseModel with _$ApiResponseModel {
         errorMsg: '',
       );
 
-      final _response = response.data as Map<String, dynamic>?;
+      if (response.data is Map<String, dynamic>) {
+        final _response = response.data as Map<String, dynamic>;
+        if (_response.containsKey('error')) {
+          return _apiResponse.copyWith(
+            status: 'Error',
+            errorMsg: _response['error'] as String? ?? 'Unknown error',
+            data: null,
+          );
+        }
+        if (_response.containsKey('results')) {
+          return _apiResponse.copyWith(data: _response['results']);
+        }
 
-      if (_response == null) {
+        return _apiResponse.copyWith(data: _response);
+      } else {
         return _apiResponse.copyWith(
+          errorMsg: 'Unexpected response format',
           data: null,
-          errorMsg: 'cannot retrieve data',
         );
       }
-
-      if (_response.containsKey('results')) {
-        return _apiResponse.copyWith(data: response.data['results']);
-      }
-
-      return _apiResponse.copyWith(data: response.data);
     } else {
       return ApiResponseModel(
         status: 'Not OK',
@@ -63,5 +69,13 @@ class ApiResponseModel with _$ApiResponseModel {
         data: null,
       );
     }
+  }
+  factory ApiResponseModel.fromDownloadImage(bool isDownloaded) {
+    return ApiResponseModel(
+      status: isDownloaded ? 'OK' : 'Not OK',
+      errorMsg: '',
+      data: isDownloaded,
+      code: isDownloaded ? 200 : 404,
+    );
   }
 }

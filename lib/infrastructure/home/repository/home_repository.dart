@@ -32,4 +32,9 @@ class HomeRepository implements IHomeRepository {
       return left(AppFailure.fromServerSide(e.toString()));
     }
   }
+
+  @override
+  Future<void> saveImage(String url) async {
+    await _dataSources.saveImage(url);
+  }
 }

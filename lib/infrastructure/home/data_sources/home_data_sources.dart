@@ -38,4 +38,8 @@ class HomeDataSources {
 
     return list;
   }
+
+  Future<void> saveImage(String url) async {
+    await _helper.saveImage(url);
+  }
 }

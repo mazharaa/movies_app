@@ -33,4 +33,8 @@ class HomeCubit extends Cubit<HomeState> {
       popularFailureOrSucceed: optionOf(popularResponse),
     ));
   }
+
+  Future<void> downloadImage(String url) async {
+    await _iHomeRepository.saveImage(url);
+  }
 }

@@ -61,6 +61,7 @@ class UserView extends StatelessWidget {
                                 width: 144.62.w,
                                 child: PosterCard(
                                   data: data,
+                                  showDownloadButton: false,
                                   isFavorite: state.isFav(data),
                                   isWatchlisted: state.isListed(data),
                                   onTap: () => context.router.push(
@@ -105,6 +106,7 @@ class UserView extends StatelessWidget {
                                 width: 144.62.w,
                                 child: PosterCard(
                                   data: data,
+                                  showDownloadButton: false,
                                   isFavorite: state.isFav(data),
                                   isWatchlisted: state.isListed(data),
                                   onTap: () => context.router.push(
