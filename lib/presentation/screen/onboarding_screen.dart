@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_app/core/common/color_const.dart';
+import 'package:movies_app/core/routes/app_router.dart';
 import 'package:movies_app/core/utils/text_theme_extension.dart';
 import 'package:movies_app/core/utils/ui_helper.dart';
 
@@ -35,9 +36,9 @@ class OnboardingScreen extends StatelessWidget {
                         borderRadius: BorderRadius.circular(10.r),
                       ),
                     ),
-                    onPressed: () {},
+                    onPressed: () => context.router.push(const LoginRoute()),
                     child: Text(
-                      'Login',
+                      'Sign in',
                       style: context.textTheme.displaySmall,
                     ),
                   ),
@@ -49,7 +50,7 @@ class OnboardingScreen extends StatelessWidget {
                         borderRadius: BorderRadius.circular(10.r),
                       ),
                     ),
-                    onPressed: () {},
+                    onPressed: () => context.router.push(const MainRoute()),
                     child: Text(
                       'As Guest',
                       style: context.textTheme.displaySmall,
