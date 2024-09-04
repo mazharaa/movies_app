@@ -39,10 +39,13 @@ class PosterCard extends StatelessWidget {
             ).image,
           ),
         ),
+        // comment it due to unused
+        /*
         child: Padding(
           padding: UiHelper.padding(all: 10),
           child: Stack(
             children: [
+              // Favorite Icon
               Positioned(
                 top: 0,
                 right: 0,
@@ -55,6 +58,7 @@ class PosterCard extends StatelessWidget {
                   ),
                 ),
               ),
+              // Add Watchlist Icon
               Positioned(
                 bottom: 0,
                 right: 0,
@@ -70,6 +74,7 @@ class PosterCard extends StatelessWidget {
                   ),
                 ),
               ),
+              // Download Icon
               showDownloadButton
                   ? Positioned(
                       left: 0,
@@ -87,6 +92,7 @@ class PosterCard extends StatelessWidget {
             ],
           ),
         ),
+        */
       ),
     );
   }
