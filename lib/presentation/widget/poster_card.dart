@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:movies_app/core/common/color_const.dart';
-import 'package:movies_app/core/utils/ui_helper.dart';
 import 'package:movies_app/domain/common/poster/poster_model.dart';
 
 class PosterCard extends StatelessWidget {

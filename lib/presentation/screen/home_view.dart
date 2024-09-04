@@ -15,21 +15,6 @@ class HomeView extends StatelessWidget {
     super.key,
   });
 
-  void _showDialog(BuildContext context, bool isDownloaded) {
-    showDialog(
-      context: context,
-      builder: (context) {
-        return SimpleDialog(
-          children: [
-            Text(
-              isDownloaded ? 'Image downloaded' : 'Failed to download image',
-            ),
-          ],
-        );
-      },
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
