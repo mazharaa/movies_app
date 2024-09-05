@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_app/application/fav_watchlist/fav_watchlist_cubit.dart';
 import 'package:movies_app/application/home/home_cubit.dart';
+import 'package:movies_app/core/common/assets_path.dart';
 import 'package:movies_app/core/common/color_const.dart';
 import 'package:movies_app/core/injection/injection.dart';
 import 'package:movies_app/core/routes/app_router.dart';
@@ -19,8 +20,6 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final CarouselSliderController carouselController =
-        CarouselSliderController();
     return BlocProvider(
       create: (context) => getIt<HomeCubit>(),
       child: Builder(
@@ -34,21 +33,20 @@ class HomeView extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
-                  padding: UiHelper.padding(horizontal: 24.w),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                  padding: UiHelper.padding(
+                    horizontal: 24.w,
+                    bottom: 15,
+                    top: 5,
+                  ),
+                  child: Row(
                     children: [
-                      Text(
-                        'What do you want to watch?',
-                        style: context.textTheme.titleMedium,
+                      Image.asset(
+                        AssetsPath.moviAppLogo,
+                        height: 23,
                       ),
-                      Container(
-                        height: 70.h,
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          'Now Playing',
-                          style: context.textTheme.bodyLarge,
-                        ),
+                      Text(
+                        '  Movie App',
+                        style: context.textTheme.titleMedium,
                       ),
                     ],
                   ),
@@ -68,24 +66,29 @@ class HomeView extends StatelessWidget {
                           return CarouselSlider(
                             items: response
                                 .map(
-                                  (e) => Container(
-                                    width: double.infinity,
-                                    decoration: BoxDecoration(
-                                      image: DecorationImage(
-                                        fit: BoxFit.cover,
-                                        image: Image.network(
-                                          e.backdrop,
-                                        ).image,
-                                      ),
+                                  (data) => GestureDetector(
+                                    onTap: () => context.router.push(
+                                      DetailsRoute(id: data.id),
                                     ),
-                                    child: Padding(
-                                      padding: UiHelper.padding(all: 10),
-                                      child: Align(
-                                        alignment: Alignment.bottomLeft,
-                                        child: Text(
-                                          e.title,
-                                          style:
-                                              context.textTheme.displayMedium,
+                                    child: Container(
+                                      width: double.infinity,
+                                      decoration: BoxDecoration(
+                                        image: DecorationImage(
+                                          fit: BoxFit.cover,
+                                          image: Image.network(
+                                            data.backdrop,
+                                          ).image,
+                                        ),
+                                      ),
+                                      child: Padding(
+                                        padding: UiHelper.padding(all: 10),
+                                        child: Align(
+                                          alignment: Alignment.bottomLeft,
+                                          child: Text(
+                                            data.title,
+                                            style:
+                                                context.textTheme.displayMedium,
+                                          ),
                                         ),
                                       ),
                                     ),
@@ -132,7 +135,6 @@ class HomeView extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Container(
-                        margin: UiHelper.padding(top: 30.h),
                         height: 60.h,
                         alignment: Alignment.centerLeft,
                         child: Text(
