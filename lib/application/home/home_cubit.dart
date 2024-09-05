@@ -37,4 +37,8 @@ class HomeCubit extends Cubit<HomeState> {
   Future<void> downloadImage(String url) async {
     await _iHomeRepository.saveImage(url);
   }
+
+  void carouselIndex(int index) {
+    emit(state.copyWith(currentCarousel: index));
+  }
 }

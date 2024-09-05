@@ -11,6 +11,7 @@ class HomeState with _$HomeState {
         popularFailureOrSucceed,
     required bool nowPlayingIsLoading,
     required bool popularIsLoading,
+    required int currentCarousel,
   }) = _HomeState;
 
   factory HomeState.initial() => HomeState(
@@ -18,6 +19,7 @@ class HomeState with _$HomeState {
         popularFailureOrSucceed: none(),
         nowPlayingIsLoading: false,
         popularIsLoading: false,
+        currentCarousel: 0,
       );
 
   HomeState get unmodified => copyWith(
@@ -25,5 +27,6 @@ class HomeState with _$HomeState {
         popularFailureOrSucceed: none(),
         nowPlayingIsLoading: false,
         popularIsLoading: false,
+        currentCarousel: 0,
       );
 }

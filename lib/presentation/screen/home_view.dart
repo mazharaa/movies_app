@@ -1,9 +1,11 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_app/application/fav_watchlist/fav_watchlist_cubit.dart';
 import 'package:movies_app/application/home/home_cubit.dart';
+import 'package:movies_app/core/common/color_const.dart';
 import 'package:movies_app/core/injection/injection.dart';
 import 'package:movies_app/core/routes/app_router.dart';
 import 'package:movies_app/core/utils/text_theme_extension.dart';
@@ -17,6 +19,8 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final CarouselSliderController carouselController =
+        CarouselSliderController();
     return BlocProvider(
       create: (context) => getIt<HomeCubit>(),
       child: Builder(
@@ -59,35 +63,68 @@ class HomeView extends StatelessWidget {
                     ),
                     (response) => SizedBox(
                       height: 210,
-                      child: ListView.separated(
-                        shrinkWrap: true,
-                        scrollDirection: Axis.horizontal,
-                        itemCount: 6,
-                        itemBuilder: (context, index) {
-                          final data = response[index];
-                          return SizedBox(
-                            width: 144.62.w,
-                            child: PosterCard(
-                              data: data,
-                              showDownloadButton: true,
-                              isFavorite: favWatchState.isFav(data),
-                              isWatchlisted: favWatchState.isListed(data),
-                              onTap: () => context.router
-                                  .push(DetailsRoute(id: data.id)),
-                              toggleFav: () => favWatchCubit.toggleFav(data),
-                              toggleAdd: () =>
-                                  favWatchCubit.toggleWatchlist(data),
-                              downloadOnTap: () async {
-                                await homeCubit.downloadImage(data.image);
+                      child: Builder(
+                        builder: (context) {
+                          return CarouselSlider(
+                            items: response
+                                .map(
+                                  (e) => Container(
+                                    width: double.infinity,
+                                    decoration: BoxDecoration(
+                                      image: DecorationImage(
+                                        fit: BoxFit.cover,
+                                        image: Image.network(
+                                          e.backdrop,
+                                        ).image,
+                                      ),
+                                    ),
+                                    child: Padding(
+                                      padding: UiHelper.padding(all: 10),
+                                      child: Align(
+                                        alignment: Alignment.bottomLeft,
+                                        child: Text(
+                                          e.title,
+                                          style:
+                                              context.textTheme.displayMedium,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                )
+                                .toList(),
+                            options: CarouselOptions(
+                              viewportFraction: 1,
+                              enlargeCenterPage: false,
+                              autoPlay: true,
+                              onPageChanged: (index, reason) {
+                                homeCubit.carouselIndex(index);
                               },
                             ),
                           );
                         },
-                        separatorBuilder: (context, index) =>
-                            SizedBox(width: 10.w),
                       ),
                     ),
                   ),
+                ),
+                SizedBox(
+                  height: 5.h,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    for (int i = 0; i < 6; i++)
+                      Container(
+                        margin: UiHelper.padding(right: 5),
+                        width: homeState.currentCarousel == i ? 10 : 7,
+                        height: 7,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(400),
+                          color: homeState.currentCarousel == i
+                              ? ColorConst.white
+                              : ColorConst.grey,
+                        ),
+                      )
+                  ],
                 ),
                 Padding(
                   padding: UiHelper.padding(horizontal: 24.w),

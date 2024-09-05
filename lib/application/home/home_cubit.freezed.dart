@@ -22,6 +22,7 @@ mixin _$HomeState {
       throw _privateConstructorUsedError;
   bool get nowPlayingIsLoading => throw _privateConstructorUsedError;
   bool get popularIsLoading => throw _privateConstructorUsedError;
+  int get currentCarousel => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $HomeStateCopyWith<HomeState> get copyWith =>
@@ -37,7 +38,8 @@ abstract class $HomeStateCopyWith<$Res> {
       {Option<Either<AppFailure, List<PosterModel>>> nowPlayingFailureOrSucceed,
       Option<Either<AppFailure, List<PosterModel>>> popularFailureOrSucceed,
       bool nowPlayingIsLoading,
-      bool popularIsLoading});
+      bool popularIsLoading,
+      int currentCarousel});
 }
 
 /// @nodoc
@@ -57,6 +59,7 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
     Object? popularFailureOrSucceed = null,
     Object? nowPlayingIsLoading = null,
     Object? popularIsLoading = null,
+    Object? currentCarousel = null,
   }) {
     return _then(_value.copyWith(
       nowPlayingFailureOrSucceed: null == nowPlayingFailureOrSucceed
@@ -75,6 +78,10 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
           ? _value.popularIsLoading
           : popularIsLoading // ignore: cast_nullable_to_non_nullable
               as bool,
+      currentCarousel: null == currentCarousel
+          ? _value.currentCarousel
+          : currentCarousel // ignore: cast_nullable_to_non_nullable
+              as int,
     ) as $Val);
   }
 }
@@ -91,7 +98,8 @@ abstract class _$$HomeStateImplCopyWith<$Res>
       {Option<Either<AppFailure, List<PosterModel>>> nowPlayingFailureOrSucceed,
       Option<Either<AppFailure, List<PosterModel>>> popularFailureOrSucceed,
       bool nowPlayingIsLoading,
-      bool popularIsLoading});
+      bool popularIsLoading,
+      int currentCarousel});
 }
 
 /// @nodoc
@@ -109,6 +117,7 @@ class __$$HomeStateImplCopyWithImpl<$Res>
     Object? popularFailureOrSucceed = null,
     Object? nowPlayingIsLoading = null,
     Object? popularIsLoading = null,
+    Object? currentCarousel = null,
   }) {
     return _then(_$HomeStateImpl(
       nowPlayingFailureOrSucceed: null == nowPlayingFailureOrSucceed
@@ -127,6 +136,10 @@ class __$$HomeStateImplCopyWithImpl<$Res>
           ? _value.popularIsLoading
           : popularIsLoading // ignore: cast_nullable_to_non_nullable
               as bool,
+      currentCarousel: null == currentCarousel
+          ? _value.currentCarousel
+          : currentCarousel // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -138,7 +151,8 @@ class _$HomeStateImpl extends _HomeState {
       {required this.nowPlayingFailureOrSucceed,
       required this.popularFailureOrSucceed,
       required this.nowPlayingIsLoading,
-      required this.popularIsLoading})
+      required this.popularIsLoading,
+      required this.currentCarousel})
       : super._();
 
   @override
@@ -150,10 +164,12 @@ class _$HomeStateImpl extends _HomeState {
   final bool nowPlayingIsLoading;
   @override
   final bool popularIsLoading;
+  @override
+  final int currentCarousel;
 
   @override
   String toString() {
-    return 'HomeState(nowPlayingFailureOrSucceed: $nowPlayingFailureOrSucceed, popularFailureOrSucceed: $popularFailureOrSucceed, nowPlayingIsLoading: $nowPlayingIsLoading, popularIsLoading: $popularIsLoading)';
+    return 'HomeState(nowPlayingFailureOrSucceed: $nowPlayingFailureOrSucceed, popularFailureOrSucceed: $popularFailureOrSucceed, nowPlayingIsLoading: $nowPlayingIsLoading, popularIsLoading: $popularIsLoading, currentCarousel: $currentCarousel)';
   }
 
   @override
@@ -171,12 +187,19 @@ class _$HomeStateImpl extends _HomeState {
             (identical(other.nowPlayingIsLoading, nowPlayingIsLoading) ||
                 other.nowPlayingIsLoading == nowPlayingIsLoading) &&
             (identical(other.popularIsLoading, popularIsLoading) ||
-                other.popularIsLoading == popularIsLoading));
+                other.popularIsLoading == popularIsLoading) &&
+            (identical(other.currentCarousel, currentCarousel) ||
+                other.currentCarousel == currentCarousel));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, nowPlayingFailureOrSucceed,
-      popularFailureOrSucceed, nowPlayingIsLoading, popularIsLoading);
+  int get hashCode => Object.hash(
+      runtimeType,
+      nowPlayingFailureOrSucceed,
+      popularFailureOrSucceed,
+      nowPlayingIsLoading,
+      popularIsLoading,
+      currentCarousel);
 
   @JsonKey(ignore: true)
   @override
@@ -192,7 +215,8 @@ abstract class _HomeState extends HomeState {
       required final Option<Either<AppFailure, List<PosterModel>>>
           popularFailureOrSucceed,
       required final bool nowPlayingIsLoading,
-      required final bool popularIsLoading}) = _$HomeStateImpl;
+      required final bool popularIsLoading,
+      required final int currentCarousel}) = _$HomeStateImpl;
   const _HomeState._() : super._();
 
   @override
@@ -203,6 +227,8 @@ abstract class _HomeState extends HomeState {
   bool get nowPlayingIsLoading;
   @override
   bool get popularIsLoading;
+  @override
+  int get currentCarousel;
   @override
   @JsonKey(ignore: true)
   _$$HomeStateImplCopyWith<_$HomeStateImpl> get copyWith =>

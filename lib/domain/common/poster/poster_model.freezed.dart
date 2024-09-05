@@ -17,7 +17,9 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$PosterModel {
   int get id => throw _privateConstructorUsedError;
+  String get title => throw _privateConstructorUsedError;
   String get image => throw _privateConstructorUsedError;
+  String get backdrop => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $PosterModelCopyWith<PosterModel> get copyWith =>
@@ -30,7 +32,7 @@ abstract class $PosterModelCopyWith<$Res> {
           PosterModel value, $Res Function(PosterModel) then) =
       _$PosterModelCopyWithImpl<$Res, PosterModel>;
   @useResult
-  $Res call({int id, String image});
+  $Res call({int id, String title, String image, String backdrop});
 }
 
 /// @nodoc
@@ -47,16 +49,26 @@ class _$PosterModelCopyWithImpl<$Res, $Val extends PosterModel>
   @override
   $Res call({
     Object? id = null,
+    Object? title = null,
     Object? image = null,
+    Object? backdrop = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
       image: null == image
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
+              as String,
+      backdrop: null == backdrop
+          ? _value.backdrop
+          : backdrop // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -70,7 +82,7 @@ abstract class _$$PosterModelImplCopyWith<$Res>
       __$$PosterModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, String image});
+  $Res call({int id, String title, String image, String backdrop});
 }
 
 /// @nodoc
@@ -85,16 +97,26 @@ class __$$PosterModelImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
+    Object? title = null,
     Object? image = null,
+    Object? backdrop = null,
   }) {
     return _then(_$PosterModelImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
       image: null == image
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
+              as String,
+      backdrop: null == backdrop
+          ? _value.backdrop
+          : backdrop // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -103,16 +125,25 @@ class __$$PosterModelImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$PosterModelImpl extends _PosterModel {
-  _$PosterModelImpl({required this.id, required this.image}) : super._();
+  _$PosterModelImpl(
+      {required this.id,
+      required this.title,
+      required this.image,
+      required this.backdrop})
+      : super._();
 
   @override
   final int id;
   @override
+  final String title;
+  @override
   final String image;
+  @override
+  final String backdrop;
 
   @override
   String toString() {
-    return 'PosterModel(id: $id, image: $image)';
+    return 'PosterModel(id: $id, title: $title, image: $image, backdrop: $backdrop)';
   }
 
   @override
@@ -121,11 +152,14 @@ class _$PosterModelImpl extends _PosterModel {
         (other.runtimeType == runtimeType &&
             other is _$PosterModelImpl &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.image, image) || other.image == image));
+            (identical(other.title, title) || other.title == title) &&
+            (identical(other.image, image) || other.image == image) &&
+            (identical(other.backdrop, backdrop) ||
+                other.backdrop == backdrop));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, image);
+  int get hashCode => Object.hash(runtimeType, id, title, image, backdrop);
 
   @JsonKey(ignore: true)
   @override
@@ -135,14 +169,21 @@ class _$PosterModelImpl extends _PosterModel {
 }
 
 abstract class _PosterModel extends PosterModel {
-  factory _PosterModel({required final int id, required final String image}) =
-      _$PosterModelImpl;
+  factory _PosterModel(
+      {required final int id,
+      required final String title,
+      required final String image,
+      required final String backdrop}) = _$PosterModelImpl;
   _PosterModel._() : super._();
 
   @override
   int get id;
   @override
+  String get title;
+  @override
   String get image;
+  @override
+  String get backdrop;
   @override
   @JsonKey(ignore: true)
   _$$PosterModelImplCopyWith<_$PosterModelImpl> get copyWith =>
