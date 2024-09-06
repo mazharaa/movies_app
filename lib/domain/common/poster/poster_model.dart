@@ -32,7 +32,7 @@ class PosterModel with _$PosterModel {
 
     return PosterModel(
       id: json['id'] as int,
-      title: json['original_title'] as String,
+      title: json['title'] as String,
       image: image,
       backdrop: backdrop,
     );
