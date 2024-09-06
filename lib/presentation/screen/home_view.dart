@@ -46,101 +46,104 @@ class HomeView extends StatelessWidget {
                       ),
                       Text(
                         '  Movie App',
-                        style: context.textTheme.titleMedium,
+                        style: context.textTheme.displayLarge,
                       ),
                     ],
                   ),
                 ),
-                homeState.nowPlayingFailureOrSucceed.fold(
-                  () => homeState.nowPlayingIsLoading
-                      ? Center(child: UiHelper.loading())
-                      : const SizedBox.shrink(),
-                  (response) => response.fold(
-                    (failure) => failure.when(
-                      fromServerSide: (value) => Text(value),
-                    ),
-                    (response) => SizedBox(
-                      height: 210,
-                      child: Builder(
+                SizedBox(
+                  height: 225,
+                  child: homeState.nowPlayingFailureOrSucceed.fold(
+                    () => homeState.nowPlayingIsLoading
+                        ? Center(child: UiHelper.loading())
+                        : const SizedBox.shrink(),
+                    (response) => response.fold(
+                      (failure) => failure.when(
+                        fromServerSide: (value) => Text(value),
+                      ),
+                      (response) => Builder(
                         builder: (context) {
-                          return CarouselSlider(
-                            items: response
-                                .map(
-                                  (data) => GestureDetector(
-                                    onTap: () => context.router.push(
-                                      DetailsRoute(id: data.id),
-                                    ),
-                                    child: Container(
-                                      width: double.infinity,
-                                      decoration: BoxDecoration(
-                                        image: DecorationImage(
-                                          fit: BoxFit.cover,
-                                          image: Image.network(
-                                            data.backdrop,
-                                          ).image,
+                          return Column(
+                            children: [
+                              CarouselSlider(
+                                items: response
+                                    .map(
+                                      (data) => GestureDetector(
+                                        onTap: () => context.router.push(
+                                          DetailsRoute(id: data.id),
                                         ),
-                                      ),
-                                      child: Padding(
-                                        padding: UiHelper.padding(all: 10),
-                                        child: Align(
-                                          alignment: Alignment.bottomLeft,
-                                          child: Text(
-                                            data.title,
-                                            style:
-                                                context.textTheme.displayMedium,
+                                        child: Container(
+                                          width: double.infinity,
+                                          decoration: BoxDecoration(
+                                            image: DecorationImage(
+                                              fit: BoxFit.cover,
+                                              image: Image.network(
+                                                data.backdrop,
+                                              ).image,
+                                            ),
+                                          ),
+                                          child: Padding(
+                                            padding: UiHelper.padding(all: 10),
+                                            child: Align(
+                                              alignment: Alignment.bottomLeft,
+                                              child: Text(
+                                                data.title,
+                                                style: context
+                                                    .textTheme.displayMedium,
+                                              ),
+                                            ),
                                           ),
                                         ),
                                       ),
-                                    ),
-                                  ),
-                                )
-                                .toList(),
-                            options: CarouselOptions(
-                              viewportFraction: 1,
-                              enlargeCenterPage: false,
-                              autoPlay: true,
-                              onPageChanged: (index, reason) {
-                                homeCubit.carouselIndex(index);
-                              },
-                            ),
+                                    )
+                                    .toList(),
+                                options: CarouselOptions(
+                                  viewportFraction: 1,
+                                  enlargeCenterPage: false,
+                                  autoPlay: true,
+                                  onPageChanged: (index, reason) {
+                                    homeCubit.carouselIndex(index);
+                                  },
+                                ),
+                              ),
+                              SizedBox(
+                                height: 5.h,
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  for (int i = 0; i < 6; i++)
+                                    Container(
+                                      margin: UiHelper.padding(right: 5),
+                                      width: homeState.currentCarousel == i
+                                          ? 10
+                                          : 7,
+                                      height: 7,
+                                      decoration: BoxDecoration(
+                                        borderRadius:
+                                            BorderRadius.circular(400),
+                                        color: homeState.currentCarousel == i
+                                            ? ColorConst.white
+                                            : ColorConst.grey,
+                                      ),
+                                    )
+                                ],
+                              ),
+                            ],
                           );
                         },
                       ),
                     ),
                   ),
                 ),
-                SizedBox(
-                  height: 5.h,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    for (int i = 0; i < 6; i++)
-                      Container(
-                        margin: UiHelper.padding(right: 5),
-                        width: homeState.currentCarousel == i ? 10 : 7,
-                        height: 7,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(400),
-                          color: homeState.currentCarousel == i
-                              ? ColorConst.white
-                              : ColorConst.grey,
-                        ),
-                      )
-                  ],
-                ),
                 Padding(
-                  padding: UiHelper.padding(horizontal: 24.w),
+                  padding: UiHelper.padding(vertical: 7.h, left: 8.w),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Container(
-                        height: 60.h,
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          'Popular',
-                          style: context.textTheme.bodyLarge,
-                        ),
+                      Text(
+                        'Popular',
+                        style: context.textTheme.titleMedium,
                       ),
                       homeState.popularFailureOrSucceed.fold(
                         () => homeState.nowPlayingIsLoading
@@ -150,36 +153,33 @@ class HomeView extends StatelessWidget {
                           (failure) => failure.when(
                             fromServerSide: (value) => Text(value),
                           ),
-                          (response) => GridView.builder(
-                            shrinkWrap: true,
-                            gridDelegate:
-                                SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 2,
-                              childAspectRatio: 3.w / 4.h,
-                              mainAxisSpacing: 18.h,
-                              crossAxisSpacing: 18.w,
+                          (response) => SizedBox(
+                            height: 152.h,
+                            width: double.infinity,
+                            child: ListView.builder(
+                              shrinkWrap: true,
+                              scrollDirection: Axis.horizontal,
+                              itemCount: 20,
+                              itemBuilder: (context, index) {
+                                final data = response[index];
+                                return GestureDetector(
+                                  child: Container(
+                                    width: 106.w,
+                                    margin: UiHelper.padding(right: 5),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(7),
+                                      image: DecorationImage(
+                                        fit: BoxFit.cover,
+                                        image: Image.network(data.image).image,
+                                      ),
+                                    ),
+                                  ),
+                                  onTap: () => context.router.push(
+                                    DetailsRoute(id: data.id),
+                                  ),
+                                );
+                              },
                             ),
-                            itemCount: 20,
-                            physics: const NeverScrollableScrollPhysics(),
-                            padding: UiHelper.padding(top: 0, bottom: 20.h),
-                            itemBuilder: (context, index) {
-                              final data = response[index];
-                              return PosterCard(
-                                data: data,
-                                showDownloadButton: true,
-                                isFavorite: favWatchState.isFav(data),
-                                isWatchlisted: favWatchState.isListed(data),
-                                onTap: () => context.router.push(
-                                  DetailsRoute(id: data.id),
-                                ),
-                                toggleFav: () => favWatchCubit.toggleFav(data),
-                                toggleAdd: () =>
-                                    favWatchCubit.toggleWatchlist(data),
-                                downloadOnTap: () async {
-                                  await homeCubit.downloadImage(data.image);
-                                },
-                              );
-                            },
                           ),
                         ),
                       ),
