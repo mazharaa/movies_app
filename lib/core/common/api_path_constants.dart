@@ -4,7 +4,7 @@ class ApiPathConstants {
   static String loginAuth = '/authentication/token/validate_with_login';
   static String nowPlaying = '/movie/now_playing';
   static String popular = '/movie/popular';
-  static String imgUrlPrefix = 'http://image.tmdb.org/t/p/w185';
+  static String imgUrlPrefix = 'http://image.tmdb.org/t/p/w300';
   static String backdropUrlPrefix = 'http://image.tmdb.org/t/p/w500';
   static String movieDetails(int movieId) => '/movie/$movieId';
   static String similarMovie(int movieId) => '${movieDetails(movieId)}/similar';
