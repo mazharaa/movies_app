@@ -34,6 +34,17 @@ class HomeRepository implements IHomeRepository {
   }
 
   @override
+  Future<Either<AppFailure, List<PosterModel>>> topRatedList() async {
+    try {
+      final response = await _dataSources.getTopRated();
+
+      return right(response);
+    } catch (e) {
+      return left(AppFailure.fromServerSide(e.toString()));
+    }
+  }
+
+  @override
   Future<void> saveImage(String url) async {
     await _dataSources.saveImage(url);
   }

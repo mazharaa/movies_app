@@ -7,5 +7,7 @@ abstract class IHomeRepository {
 
   Future<Either<AppFailure, List<PosterModel>>> popularList();
 
+  Future<Either<AppFailure, List<PosterModel>>> topRatedList();
+
   Future<void> saveImage(String url);
 }

@@ -11,7 +11,6 @@ import 'package:movies_app/core/injection/injection.dart';
 import 'package:movies_app/core/routes/app_router.dart';
 import 'package:movies_app/core/utils/text_theme_extension.dart';
 import 'package:movies_app/core/utils/ui_helper.dart';
-import 'package:movies_app/presentation/widget/poster_card.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({
@@ -145,18 +144,66 @@ class HomeView extends StatelessWidget {
                         'Popular',
                         style: context.textTheme.titleMedium,
                       ),
-                      homeState.popularFailureOrSucceed.fold(
-                        () => homeState.nowPlayingIsLoading
-                            ? Center(child: UiHelper.loading())
-                            : const SizedBox.shrink(),
-                        (response) => response.fold(
-                          (failure) => failure.when(
-                            fromServerSide: (value) => Text(value),
+                      SizedBox(
+                        height: 152.h,
+                        child: homeState.popularFailureOrSucceed.fold(
+                          () => homeState.nowPlayingIsLoading
+                              ? Center(child: UiHelper.loading())
+                              : const SizedBox.shrink(),
+                          (response) => response.fold(
+                            (failure) => failure.when(
+                              fromServerSide: (value) => Text(value),
+                            ),
+                            (response) => ListView.builder(
+                              shrinkWrap: true,
+                              scrollDirection: Axis.horizontal,
+                              itemCount: 20,
+                              itemBuilder: (context, index) {
+                                final data = response[index];
+                                return GestureDetector(
+                                  child: Container(
+                                    width: 106.w,
+                                    margin: UiHelper.padding(right: 5),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(7),
+                                      image: DecorationImage(
+                                        fit: BoxFit.cover,
+                                        image: Image.network(data.image).image,
+                                      ),
+                                    ),
+                                  ),
+                                  onTap: () => context.router.push(
+                                    DetailsRoute(id: data.id),
+                                  ),
+                                );
+                              },
+                            ),
                           ),
-                          (response) => SizedBox(
-                            height: 152.h,
-                            width: double.infinity,
-                            child: ListView.builder(
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: UiHelper.padding(vertical: 7.h, left: 8.w),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Top Rated',
+                        style: context.textTheme.titleMedium,
+                      ),
+                      SizedBox(
+                        height: 152.h,
+                        child: homeState.topRatedFailureOrSucceed.fold(
+                          () => homeState.nowPlayingIsLoading
+                              ? Center(child: UiHelper.loading())
+                              : const SizedBox.shrink(),
+                          (response) => response.fold(
+                            (failure) => failure.when(
+                              fromServerSide: (value) => Text(value),
+                            ),
+                            (response) => ListView.builder(
                               shrinkWrap: true,
                               scrollDirection: Axis.horizontal,
                               itemCount: 20,
