@@ -45,6 +45,17 @@ class HomeRepository implements IHomeRepository {
   }
 
   @override
+  Future<Either<AppFailure, List<PosterModel>>> trendingList() async {
+    try {
+      final response = await _dataSources.getTrending();
+
+      return right(response);
+    } catch (e) {
+      return left(AppFailure.fromServerSide(e.toString()));
+    }
+  }
+
+  @override
   Future<void> saveImage(String url) async {
     await _dataSources.saveImage(url);
   }

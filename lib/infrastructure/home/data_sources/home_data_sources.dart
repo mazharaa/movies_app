@@ -54,6 +54,21 @@ class HomeDataSources {
     return list;
   }
 
+  Future<List<PosterModel>> getTrending() async {
+    final response = await _helper.get(
+      path: ApiPathConstants.ternding,
+    );
+
+    final rawList = response.data as List;
+
+    final list = List.generate(
+      rawList.length.clamp(0, 20),
+      (i) => PosterModel.fromJson(rawList[i]),
+    );
+
+    return list;
+  }
+
   Future<void> saveImage(String url) async {
     await _helper.saveImage(url);
   }

@@ -58,7 +58,7 @@ class HomeView extends StatelessWidget {
                         : const SizedBox.shrink(),
                     (response) => response.fold(
                       (failure) => failure.when(
-                        fromServerSide: (value) => Text(value),
+                        fromServerSide: (value) => Center(child: Text(value)),
                       ),
                       (response) => Builder(
                         builder: (context) {
@@ -136,7 +136,11 @@ class HomeView extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                  padding: UiHelper.padding(vertical: 7.h, left: 8.w),
+                  padding: UiHelper.padding(
+                    vertical: 7.h,
+                    left: 8.w,
+                    right: 3.w,
+                  ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -152,7 +156,8 @@ class HomeView extends StatelessWidget {
                               : const SizedBox.shrink(),
                           (response) => response.fold(
                             (failure) => failure.when(
-                              fromServerSide: (value) => Text(value),
+                              fromServerSide: (value) =>
+                                  Center(child: Text(value)),
                             ),
                             (response) => ListView.builder(
                               shrinkWrap: true,
@@ -163,7 +168,7 @@ class HomeView extends StatelessWidget {
                                 return GestureDetector(
                                   child: Container(
                                     width: 106.w,
-                                    margin: UiHelper.padding(right: 5),
+                                    margin: UiHelper.padding(right: 5.w),
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(7),
                                       image: DecorationImage(
@@ -185,7 +190,11 @@ class HomeView extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                  padding: UiHelper.padding(vertical: 7.h, left: 8.w),
+                  padding: UiHelper.padding(
+                    vertical: 7.h,
+                    left: 8.w,
+                    right: 3.h,
+                  ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -196,12 +205,13 @@ class HomeView extends StatelessWidget {
                       SizedBox(
                         height: 152.h,
                         child: homeState.topRatedFailureOrSucceed.fold(
-                          () => homeState.nowPlayingIsLoading
+                          () => homeState.topRatedIsLoading
                               ? Center(child: UiHelper.loading())
                               : const SizedBox.shrink(),
                           (response) => response.fold(
                             (failure) => failure.when(
-                              fromServerSide: (value) => Text(value),
+                              fromServerSide: (value) =>
+                                  Center(child: Text(value)),
                             ),
                             (response) => ListView.builder(
                               shrinkWrap: true,
@@ -212,7 +222,7 @@ class HomeView extends StatelessWidget {
                                 return GestureDetector(
                                   child: Container(
                                     width: 106.w,
-                                    margin: UiHelper.padding(right: 5),
+                                    margin: UiHelper.padding(right: 5.w),
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(7),
                                       image: DecorationImage(
@@ -233,6 +243,61 @@ class HomeView extends StatelessWidget {
                     ],
                   ),
                 ),
+                Padding(
+                  padding: UiHelper.padding(
+                    vertical: 7.h,
+                    left: 8.w,
+                    right: 3.h,
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Trending on This Week',
+                        style: context.textTheme.titleMedium,
+                      ),
+                      SizedBox(
+                        height: 152.h,
+                        child: homeState.trendingFailureOrSucceed.fold(
+                          () => homeState.trendingIsLoading
+                              ? Center(child: UiHelper.loading())
+                              : const SizedBox.shrink(),
+                          (response) => response.fold(
+                            (failure) => failure.when(
+                              fromServerSide: (value) =>
+                                  Center(child: Text(value)),
+                            ),
+                            (response) => ListView.builder(
+                              shrinkWrap: true,
+                              scrollDirection: Axis.horizontal,
+                              itemCount: 20,
+                              itemBuilder: (context, index) {
+                                final data = response[index];
+                                return GestureDetector(
+                                  child: Container(
+                                    width: 106.w,
+                                    margin: UiHelper.padding(right: 5.w),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(7),
+                                      image: DecorationImage(
+                                        fit: BoxFit.cover,
+                                        image: Image.network(data.image).image,
+                                      ),
+                                    ),
+                                  ),
+                                  onTap: () => context.router.push(
+                                    DetailsRoute(id: data.id),
+                                  ),
+                                );
+                              },
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(height: 10.h)
               ],
             ),
           );

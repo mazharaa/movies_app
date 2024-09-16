@@ -22,9 +22,12 @@ mixin _$HomeState {
       throw _privateConstructorUsedError;
   Option<Either<AppFailure, List<PosterModel>>> get topRatedFailureOrSucceed =>
       throw _privateConstructorUsedError;
+  Option<Either<AppFailure, List<PosterModel>>> get trendingFailureOrSucceed =>
+      throw _privateConstructorUsedError;
   bool get nowPlayingIsLoading => throw _privateConstructorUsedError;
   bool get popularIsLoading => throw _privateConstructorUsedError;
   bool get topRatedIsLoading => throw _privateConstructorUsedError;
+  bool get trendingIsLoading => throw _privateConstructorUsedError;
   int get currentCarousel => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -41,9 +44,11 @@ abstract class $HomeStateCopyWith<$Res> {
       {Option<Either<AppFailure, List<PosterModel>>> nowPlayingFailureOrSucceed,
       Option<Either<AppFailure, List<PosterModel>>> popularFailureOrSucceed,
       Option<Either<AppFailure, List<PosterModel>>> topRatedFailureOrSucceed,
+      Option<Either<AppFailure, List<PosterModel>>> trendingFailureOrSucceed,
       bool nowPlayingIsLoading,
       bool popularIsLoading,
       bool topRatedIsLoading,
+      bool trendingIsLoading,
       int currentCarousel});
 }
 
@@ -63,9 +68,11 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
     Object? nowPlayingFailureOrSucceed = null,
     Object? popularFailureOrSucceed = null,
     Object? topRatedFailureOrSucceed = null,
+    Object? trendingFailureOrSucceed = null,
     Object? nowPlayingIsLoading = null,
     Object? popularIsLoading = null,
     Object? topRatedIsLoading = null,
+    Object? trendingIsLoading = null,
     Object? currentCarousel = null,
   }) {
     return _then(_value.copyWith(
@@ -81,6 +88,10 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
           ? _value.topRatedFailureOrSucceed
           : topRatedFailureOrSucceed // ignore: cast_nullable_to_non_nullable
               as Option<Either<AppFailure, List<PosterModel>>>,
+      trendingFailureOrSucceed: null == trendingFailureOrSucceed
+          ? _value.trendingFailureOrSucceed
+          : trendingFailureOrSucceed // ignore: cast_nullable_to_non_nullable
+              as Option<Either<AppFailure, List<PosterModel>>>,
       nowPlayingIsLoading: null == nowPlayingIsLoading
           ? _value.nowPlayingIsLoading
           : nowPlayingIsLoading // ignore: cast_nullable_to_non_nullable
@@ -92,6 +103,10 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
       topRatedIsLoading: null == topRatedIsLoading
           ? _value.topRatedIsLoading
           : topRatedIsLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      trendingIsLoading: null == trendingIsLoading
+          ? _value.trendingIsLoading
+          : trendingIsLoading // ignore: cast_nullable_to_non_nullable
               as bool,
       currentCarousel: null == currentCarousel
           ? _value.currentCarousel
@@ -113,9 +128,11 @@ abstract class _$$HomeStateImplCopyWith<$Res>
       {Option<Either<AppFailure, List<PosterModel>>> nowPlayingFailureOrSucceed,
       Option<Either<AppFailure, List<PosterModel>>> popularFailureOrSucceed,
       Option<Either<AppFailure, List<PosterModel>>> topRatedFailureOrSucceed,
+      Option<Either<AppFailure, List<PosterModel>>> trendingFailureOrSucceed,
       bool nowPlayingIsLoading,
       bool popularIsLoading,
       bool topRatedIsLoading,
+      bool trendingIsLoading,
       int currentCarousel});
 }
 
@@ -133,9 +150,11 @@ class __$$HomeStateImplCopyWithImpl<$Res>
     Object? nowPlayingFailureOrSucceed = null,
     Object? popularFailureOrSucceed = null,
     Object? topRatedFailureOrSucceed = null,
+    Object? trendingFailureOrSucceed = null,
     Object? nowPlayingIsLoading = null,
     Object? popularIsLoading = null,
     Object? topRatedIsLoading = null,
+    Object? trendingIsLoading = null,
     Object? currentCarousel = null,
   }) {
     return _then(_$HomeStateImpl(
@@ -151,6 +170,10 @@ class __$$HomeStateImplCopyWithImpl<$Res>
           ? _value.topRatedFailureOrSucceed
           : topRatedFailureOrSucceed // ignore: cast_nullable_to_non_nullable
               as Option<Either<AppFailure, List<PosterModel>>>,
+      trendingFailureOrSucceed: null == trendingFailureOrSucceed
+          ? _value.trendingFailureOrSucceed
+          : trendingFailureOrSucceed // ignore: cast_nullable_to_non_nullable
+              as Option<Either<AppFailure, List<PosterModel>>>,
       nowPlayingIsLoading: null == nowPlayingIsLoading
           ? _value.nowPlayingIsLoading
           : nowPlayingIsLoading // ignore: cast_nullable_to_non_nullable
@@ -162,6 +185,10 @@ class __$$HomeStateImplCopyWithImpl<$Res>
       topRatedIsLoading: null == topRatedIsLoading
           ? _value.topRatedIsLoading
           : topRatedIsLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      trendingIsLoading: null == trendingIsLoading
+          ? _value.trendingIsLoading
+          : trendingIsLoading // ignore: cast_nullable_to_non_nullable
               as bool,
       currentCarousel: null == currentCarousel
           ? _value.currentCarousel
@@ -178,9 +205,11 @@ class _$HomeStateImpl extends _HomeState {
       {required this.nowPlayingFailureOrSucceed,
       required this.popularFailureOrSucceed,
       required this.topRatedFailureOrSucceed,
+      required this.trendingFailureOrSucceed,
       required this.nowPlayingIsLoading,
       required this.popularIsLoading,
       required this.topRatedIsLoading,
+      required this.trendingIsLoading,
       required this.currentCarousel})
       : super._();
 
@@ -192,17 +221,21 @@ class _$HomeStateImpl extends _HomeState {
   @override
   final Option<Either<AppFailure, List<PosterModel>>> topRatedFailureOrSucceed;
   @override
+  final Option<Either<AppFailure, List<PosterModel>>> trendingFailureOrSucceed;
+  @override
   final bool nowPlayingIsLoading;
   @override
   final bool popularIsLoading;
   @override
   final bool topRatedIsLoading;
   @override
+  final bool trendingIsLoading;
+  @override
   final int currentCarousel;
 
   @override
   String toString() {
-    return 'HomeState(nowPlayingFailureOrSucceed: $nowPlayingFailureOrSucceed, popularFailureOrSucceed: $popularFailureOrSucceed, topRatedFailureOrSucceed: $topRatedFailureOrSucceed, nowPlayingIsLoading: $nowPlayingIsLoading, popularIsLoading: $popularIsLoading, topRatedIsLoading: $topRatedIsLoading, currentCarousel: $currentCarousel)';
+    return 'HomeState(nowPlayingFailureOrSucceed: $nowPlayingFailureOrSucceed, popularFailureOrSucceed: $popularFailureOrSucceed, topRatedFailureOrSucceed: $topRatedFailureOrSucceed, trendingFailureOrSucceed: $trendingFailureOrSucceed, nowPlayingIsLoading: $nowPlayingIsLoading, popularIsLoading: $popularIsLoading, topRatedIsLoading: $topRatedIsLoading, trendingIsLoading: $trendingIsLoading, currentCarousel: $currentCarousel)';
   }
 
   @override
@@ -220,12 +253,17 @@ class _$HomeStateImpl extends _HomeState {
             (identical(
                     other.topRatedFailureOrSucceed, topRatedFailureOrSucceed) ||
                 other.topRatedFailureOrSucceed == topRatedFailureOrSucceed) &&
+            (identical(
+                    other.trendingFailureOrSucceed, trendingFailureOrSucceed) ||
+                other.trendingFailureOrSucceed == trendingFailureOrSucceed) &&
             (identical(other.nowPlayingIsLoading, nowPlayingIsLoading) ||
                 other.nowPlayingIsLoading == nowPlayingIsLoading) &&
             (identical(other.popularIsLoading, popularIsLoading) ||
                 other.popularIsLoading == popularIsLoading) &&
             (identical(other.topRatedIsLoading, topRatedIsLoading) ||
                 other.topRatedIsLoading == topRatedIsLoading) &&
+            (identical(other.trendingIsLoading, trendingIsLoading) ||
+                other.trendingIsLoading == trendingIsLoading) &&
             (identical(other.currentCarousel, currentCarousel) ||
                 other.currentCarousel == currentCarousel));
   }
@@ -236,9 +274,11 @@ class _$HomeStateImpl extends _HomeState {
       nowPlayingFailureOrSucceed,
       popularFailureOrSucceed,
       topRatedFailureOrSucceed,
+      trendingFailureOrSucceed,
       nowPlayingIsLoading,
       popularIsLoading,
       topRatedIsLoading,
+      trendingIsLoading,
       currentCarousel);
 
   @JsonKey(ignore: true)
@@ -256,9 +296,12 @@ abstract class _HomeState extends HomeState {
           popularFailureOrSucceed,
       required final Option<Either<AppFailure, List<PosterModel>>>
           topRatedFailureOrSucceed,
+      required final Option<Either<AppFailure, List<PosterModel>>>
+          trendingFailureOrSucceed,
       required final bool nowPlayingIsLoading,
       required final bool popularIsLoading,
       required final bool topRatedIsLoading,
+      required final bool trendingIsLoading,
       required final int currentCarousel}) = _$HomeStateImpl;
   const _HomeState._() : super._();
 
@@ -269,11 +312,15 @@ abstract class _HomeState extends HomeState {
   @override
   Option<Either<AppFailure, List<PosterModel>>> get topRatedFailureOrSucceed;
   @override
+  Option<Either<AppFailure, List<PosterModel>>> get trendingFailureOrSucceed;
+  @override
   bool get nowPlayingIsLoading;
   @override
   bool get popularIsLoading;
   @override
   bool get topRatedIsLoading;
+  @override
+  bool get trendingIsLoading;
   @override
   int get currentCarousel;
   @override

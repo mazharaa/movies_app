@@ -22,19 +22,23 @@ class HomeCubit extends Cubit<HomeState> {
       nowPlayingIsLoading: true,
       popularIsLoading: true,
       topRatedIsLoading: true,
+      trendingIsLoading: true,
     ));
 
     final nowPLayingResponse = await _iHomeRepository.nowPlayingList();
     final popularResponse = await _iHomeRepository.popularList();
     final topRatedResponse = await _iHomeRepository.topRatedList();
+    final trendingResponse = await _iHomeRepository.trendingList();
 
     emit(state.copyWith(
       nowPlayingIsLoading: false,
       popularIsLoading: false,
       topRatedIsLoading: false,
+      trendingIsLoading: false,
       nowPlayingFailureOrSucceed: optionOf(nowPLayingResponse),
       popularFailureOrSucceed: optionOf(popularResponse),
       topRatedFailureOrSucceed: optionOf(topRatedResponse),
+      trendingFailureOrSucceed: optionOf(trendingResponse),
     ));
   }
 
