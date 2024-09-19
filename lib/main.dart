@@ -9,6 +9,7 @@ import 'package:movies_app/core/injection/injection.dart';
 import 'package:movies_app/core/routes/app_router.dart';
 
 void main(List<String> args) {
+  WidgetsFlutterBinding.ensureInitialized();
   configuredInjection();
   runApp(MoviesApp());
 }
