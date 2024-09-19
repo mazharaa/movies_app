@@ -2,6 +2,7 @@ class ApiPathConstants {
   static String guestUser = '/authentication/guest_session/new';
   static String reqToken = '/authentication/token/new';
   static String loginAuth = '/authentication/token/validate_with_login';
+  static String createSession = '/authentication/session/new';
   static String nowPlaying = '/movie/now_playing';
   static String popular = '/movie/popular';
   static String topRated = '/movie/top_rated';
