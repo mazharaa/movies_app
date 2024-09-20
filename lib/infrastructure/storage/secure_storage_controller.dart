@@ -3,8 +3,8 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 enum _SecureStorageKeys {
   reqToken,
   sessionId,
+  accountId,
   username,
-  password,
 }
 
 class SecureStorageController {
@@ -24,15 +24,10 @@ class SecureStorageController {
     );
   }
 
-  Future<void> setUserLogin(String username, String password) async {
+  Future<void> setUsername(String username) async {
     await _secureStorage.write(
       key: _SecureStorageKeys.username.name,
       value: username,
-    );
-
-    await _secureStorage.write(
-      key: _SecureStorageKeys.password.name,
-      value: password,
     );
   }
 
@@ -43,15 +38,30 @@ class SecureStorageController {
     );
   }
 
+  Future<void> setAccountId(int accountId) async {
+    await _secureStorage.write(
+      key: _SecureStorageKeys.sessionId.name,
+      value: accountId.toString(),
+    );
+  }
+
   Future<String> get reqToken async =>
       await _secureStorage.read(key: _SecureStorageKeys.reqToken.name) ?? "";
+
+  Future<String> get sessionId async =>
+      await _secureStorage.read(key: _SecureStorageKeys.sessionId.name) ?? "";
 
   Future<String> get username async =>
       await _secureStorage.read(key: _SecureStorageKeys.username.name) ?? "";
 
-  Future<String> get password async =>
-      await _secureStorage.read(key: _SecureStorageKeys.password.name) ?? "";
+  Future<int> get accountId async {
+    final idString = await _secureStorage.read(
+          key: _SecureStorageKeys.accountId.name,
+        ) ??
+        "0";
 
-  Future<String> get sessionId async =>
-      await _secureStorage.read(key: _SecureStorageKeys.sessionId.name) ?? "";
+    var id = int.parse(idString);
+
+    return id;
+  }
 }
