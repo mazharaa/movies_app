@@ -1,4 +1,5 @@
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:injectable/injectable.dart';
 
 enum _SecureStorageKeys {
   reqToken,
@@ -7,6 +8,7 @@ enum _SecureStorageKeys {
   username,
 }
 
+@lazySingleton
 class SecureStorageController {
   static late final FlutterSecureStorage _secureStorage;
 
