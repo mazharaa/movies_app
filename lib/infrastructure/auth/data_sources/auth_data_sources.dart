@@ -23,8 +23,8 @@ class AuthDataSources {
     _secureStorage.setReqToken(token);
   }
 
-  Future<void> createSession(String password) async {
-    await _helper.get(
+  Future<bool> createSession(String password) async {
+    final response = await _helper.get(
       path: ApiPathConstants.loginAuth,
       queryParameters: {
         "username": _secureStorage.username,
@@ -32,6 +32,10 @@ class AuthDataSources {
         "request_token": _secureStorage.reqToken,
       },
     );
+
+    final _response = response.data as Map<String, dynamic>;
+
+    return _response['success'] as bool;
   }
 
   Future<void> getSessionId() async {
