@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -31,6 +32,13 @@ class AppTheme {
       unselectedItemColor: ColorConst.grey,
       showSelectedLabels: false,
       showUnselectedLabels: false,
+    ),
+    textSelectionTheme: const TextSelectionThemeData(
+      selectionColor: ColorConst.lightBlue,
+      selectionHandleColor: ColorConst.black,
+    ),
+    cupertinoOverrideTheme: const CupertinoThemeData(
+      primaryColor: ColorConst.blue,
     ),
   );
 
