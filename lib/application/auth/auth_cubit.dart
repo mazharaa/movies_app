@@ -14,6 +14,10 @@ class AuthCubit extends Cubit<AuthState> {
 
   AuthCubit(this._authRepository) : super(AuthState.initial());
 
+  Future<void> fillUsername() async {
+    emit(state.copyWith(usernnameIsFilled: true));
+  }
+
   Future<void> loginUser(String username, String password) async {
     emit(state.copyWith(
       authIsLoading: true,

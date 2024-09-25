@@ -7,15 +7,18 @@ class AuthState with _$AuthState {
   const factory AuthState({
     required Option<Either<AppFailure, bool>> isAuthenticate,
     required bool authIsLoading,
+    required bool usernnameIsFilled,
   }) = _AuthState;
 
   factory AuthState.initial() => AuthState(
         isAuthenticate: none(),
         authIsLoading: false,
+        usernnameIsFilled: false,
       );
 
   AuthState get unmodified => copyWith(
         isAuthenticate: none(),
         authIsLoading: false,
+        usernnameIsFilled: false,
       );
 }
