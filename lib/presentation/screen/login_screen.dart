@@ -1,6 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:movies_app/application/auth/auth_cubit.dart';
 import 'package:movies_app/core/common/color_const.dart';
 import 'package:movies_app/core/utils/text_theme_extension.dart';
 import 'package:movies_app/core/utils/ui_helper.dart';
@@ -25,89 +27,99 @@ class LoginScreen extends StatelessWidget {
       ),
       body: Padding(
         padding: UiHelper.padding(horizontal: 32.w, bottom: 85.h),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            SizedBox(
-              height: 50.h,
-              child: TextField(
-                showCursor: false,
-                decoration: InputDecoration(
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(5),
-                    borderSide: BorderSide.none,
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(5),
-                    borderSide: BorderSide.none,
-                  ),
-                  fillColor: ColorConst.darkGrey,
-                  filled: true,
-                  contentPadding: UiHelper.padding(
-                    top: 11.h,
-                    horizontal: 16.w,
-                    bottom: 15.h,
-                  ),
-                  hintText: 'Username',
-                  hintStyle: context.textTheme.titleSmall?.copyWith(
-                    color: ColorConst.lightGrey,
-                  ),
-                ),
-                style: const TextStyle(
-                  fontSize: 16,
-                ),
-              ),
-            ),
-            SizedBox(height: 20.w),
-            SizedBox(
-              height: 50.h,
-              child: TextField(
-                showCursor: false,
-                decoration: InputDecoration(
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(5),
-                    borderSide: BorderSide.none,
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(5),
-                    borderSide: BorderSide.none,
-                  ),
-                  fillColor: ColorConst.darkGrey,
-                  filled: true,
-                  contentPadding: UiHelper.padding(
-                    top: 11.h,
-                    horizontal: 16.w,
-                    bottom: 15.h,
-                  ),
-                  hintText: 'Password',
-                  hintStyle: context.textTheme.titleSmall?.copyWith(
-                    color: ColorConst.lightGrey,
+        child: BlocBuilder<AuthCubit, AuthState>(
+          builder: (context, state) {
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(
+                  height: 50.h,
+                  child: TextField(
+                    showCursor: false,
+                    controller: context.read<AuthCubit>().usernameController,
+                    decoration: InputDecoration(
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(5),
+                        borderSide: BorderSide.none,
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(5),
+                        borderSide: BorderSide.none,
+                      ),
+                      fillColor: ColorConst.darkGrey,
+                      filled: true,
+                      contentPadding: UiHelper.padding(
+                        top: 11.h,
+                        horizontal: 16.w,
+                        bottom: 15.h,
+                      ),
+                      hintText: 'Username',
+                      hintStyle: context.textTheme.titleSmall?.copyWith(
+                        color: ColorConst.lightGrey,
+                      ),
+                    ),
+                    style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
                 ),
-                style: const TextStyle(
-                  fontSize: 16,
+                SizedBox(height: 20.w),
+                SizedBox(
+                  height: 50.h,
+                  child: TextField(
+                    showCursor: false,
+                    decoration: InputDecoration(
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(5),
+                        borderSide: BorderSide.none,
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(5),
+                        borderSide: BorderSide.none,
+                      ),
+                      fillColor: ColorConst.darkGrey,
+                      filled: true,
+                      contentPadding: UiHelper.padding(
+                        top: 11.h,
+                        horizontal: 16.w,
+                        bottom: 15.h,
+                      ),
+                      hintText: 'Password',
+                      hintStyle: context.textTheme.titleSmall?.copyWith(
+                        color: ColorConst.lightGrey,
+                      ),
+                    ),
+                    style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600,
+                    ),
+                    obscureText: true,
+                  ),
                 ),
-              ),
-            ),
-            SizedBox(height: 20.w),
-            ElevatedButton(
-              onPressed: () {},
-              style: ElevatedButton.styleFrom(
-                minimumSize: Size(double.infinity, 50.h),
-                backgroundColor: ColorConst.blue,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(5),
+                SizedBox(height: 20.w),
+                ElevatedButton(
+                  onPressed: () {},
+                  style: ElevatedButton.styleFrom(
+                    minimumSize: Size(double.infinity, 50.h),
+                    backgroundColor: state.usernnameIsFilled
+                        ? ColorConst.blue
+                        : ColorConst.black,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(5),
+                    ),
+                  ),
+                  child: Text(
+                    'SIGN IN',
+                    style: context.textTheme.titleSmall?.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
                 ),
-              ),
-              child: Text(
-                'SIGN IN',
-                style: context.textTheme.titleSmall?.copyWith(
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-          ],
+              ],
+            );
+          },
         ),
       ),
     );

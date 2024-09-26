@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:flutter/material.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
@@ -11,11 +12,19 @@ part 'auth_cubit.freezed.dart';
 @injectable
 class AuthCubit extends Cubit<AuthState> {
   final AuthRepository _authRepository;
+  late TextEditingController usernameController;
 
-  AuthCubit(this._authRepository) : super(AuthState.initial());
+  AuthCubit(this._authRepository) : super(AuthState.initial()) {
+    usernameController = TextEditingController()
+      ..addListener(() {
+        fillUsername(usernameController.text);
+      });
+  }
 
-  Future<void> fillUsername() async {
-    emit(state.copyWith(usernnameIsFilled: true));
+  void fillUsername(String val) {
+    val.isEmpty
+        ? emit(state.copyWith(usernnameIsFilled: false))
+        : emit(state.copyWith(usernnameIsFilled: true));
   }
 
   Future<void> loginUser(String username, String password) async {
