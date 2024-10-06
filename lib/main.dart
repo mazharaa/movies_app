@@ -8,10 +8,12 @@ import 'package:movies_app/application/nav_bar/nav_bar_cubit.dart';
 import 'package:movies_app/core/common/app_theme.dart';
 import 'package:movies_app/core/injection/injection.dart';
 import 'package:movies_app/core/routes/app_router.dart';
+import 'package:movies_app/infrastructure/storage/secure_storage_controller.dart';
 
 void main(List<String> args) {
   WidgetsFlutterBinding.ensureInitialized();
   configuredInjection();
+  SecureStorageController.init();
   runApp(MoviesApp());
 }
 

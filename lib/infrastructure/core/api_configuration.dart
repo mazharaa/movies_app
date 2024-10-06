@@ -6,15 +6,15 @@ class ApiConfiguration {
   const ApiConfiguration._();
 
   static BaseOptions dioBaseOptions(String baseUrl) => BaseOptions(
-        connectTimeout: const Duration(seconds: 12),
-        receiveTimeout: const Duration(seconds: 6),
-        sendTimeout: const Duration(seconds: 6),
+        connectTimeout: const Duration(seconds: 24),
+        receiveTimeout: const Duration(seconds: 18),
+        sendTimeout: const Duration(seconds: 18),
         baseUrl: baseUrl,
       );
 
   static Future<ApiResponseModel> handleApiResponse(Response response) async {
     if (!ApiResponseModel.isFormatValid(response.data)) {
-      return Future.error(ApiResponseNotValidException());
+      return await Future.error(ApiResponseNotValidException());
     }
 
     final model = ApiResponseModel.fromJson(response);

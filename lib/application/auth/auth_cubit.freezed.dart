@@ -16,10 +16,11 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$AuthState {
-  Option<Either<AppFailure, bool>> get isAuthenticate =>
+  Option<Either<AppFailure, AuthModel>> get isAuthenticate =>
       throw _privateConstructorUsedError;
   bool get authIsLoading => throw _privateConstructorUsedError;
   bool get usernnameIsFilled => throw _privateConstructorUsedError;
+  bool get dialogIsShown => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $AuthStateCopyWith<AuthState> get copyWith =>
@@ -32,9 +33,10 @@ abstract class $AuthStateCopyWith<$Res> {
       _$AuthStateCopyWithImpl<$Res, AuthState>;
   @useResult
   $Res call(
-      {Option<Either<AppFailure, bool>> isAuthenticate,
+      {Option<Either<AppFailure, AuthModel>> isAuthenticate,
       bool authIsLoading,
-      bool usernnameIsFilled});
+      bool usernnameIsFilled,
+      bool dialogIsShown});
 }
 
 /// @nodoc
@@ -53,12 +55,13 @@ class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
     Object? isAuthenticate = null,
     Object? authIsLoading = null,
     Object? usernnameIsFilled = null,
+    Object? dialogIsShown = null,
   }) {
     return _then(_value.copyWith(
       isAuthenticate: null == isAuthenticate
           ? _value.isAuthenticate
           : isAuthenticate // ignore: cast_nullable_to_non_nullable
-              as Option<Either<AppFailure, bool>>,
+              as Option<Either<AppFailure, AuthModel>>,
       authIsLoading: null == authIsLoading
           ? _value.authIsLoading
           : authIsLoading // ignore: cast_nullable_to_non_nullable
@@ -66,6 +69,10 @@ class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
       usernnameIsFilled: null == usernnameIsFilled
           ? _value.usernnameIsFilled
           : usernnameIsFilled // ignore: cast_nullable_to_non_nullable
+              as bool,
+      dialogIsShown: null == dialogIsShown
+          ? _value.dialogIsShown
+          : dialogIsShown // ignore: cast_nullable_to_non_nullable
               as bool,
     ) as $Val);
   }
@@ -80,9 +87,10 @@ abstract class _$$AuthStateImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {Option<Either<AppFailure, bool>> isAuthenticate,
+      {Option<Either<AppFailure, AuthModel>> isAuthenticate,
       bool authIsLoading,
-      bool usernnameIsFilled});
+      bool usernnameIsFilled,
+      bool dialogIsShown});
 }
 
 /// @nodoc
@@ -99,12 +107,13 @@ class __$$AuthStateImplCopyWithImpl<$Res>
     Object? isAuthenticate = null,
     Object? authIsLoading = null,
     Object? usernnameIsFilled = null,
+    Object? dialogIsShown = null,
   }) {
     return _then(_$AuthStateImpl(
       isAuthenticate: null == isAuthenticate
           ? _value.isAuthenticate
           : isAuthenticate // ignore: cast_nullable_to_non_nullable
-              as Option<Either<AppFailure, bool>>,
+              as Option<Either<AppFailure, AuthModel>>,
       authIsLoading: null == authIsLoading
           ? _value.authIsLoading
           : authIsLoading // ignore: cast_nullable_to_non_nullable
@@ -112,6 +121,10 @@ class __$$AuthStateImplCopyWithImpl<$Res>
       usernnameIsFilled: null == usernnameIsFilled
           ? _value.usernnameIsFilled
           : usernnameIsFilled // ignore: cast_nullable_to_non_nullable
+              as bool,
+      dialogIsShown: null == dialogIsShown
+          ? _value.dialogIsShown
+          : dialogIsShown // ignore: cast_nullable_to_non_nullable
               as bool,
     ));
   }
@@ -123,19 +136,22 @@ class _$AuthStateImpl extends _AuthState {
   const _$AuthStateImpl(
       {required this.isAuthenticate,
       required this.authIsLoading,
-      required this.usernnameIsFilled})
+      required this.usernnameIsFilled,
+      required this.dialogIsShown})
       : super._();
 
   @override
-  final Option<Either<AppFailure, bool>> isAuthenticate;
+  final Option<Either<AppFailure, AuthModel>> isAuthenticate;
   @override
   final bool authIsLoading;
   @override
   final bool usernnameIsFilled;
+  @override
+  final bool dialogIsShown;
 
   @override
   String toString() {
-    return 'AuthState(isAuthenticate: $isAuthenticate, authIsLoading: $authIsLoading, usernnameIsFilled: $usernnameIsFilled)';
+    return 'AuthState(isAuthenticate: $isAuthenticate, authIsLoading: $authIsLoading, usernnameIsFilled: $usernnameIsFilled, dialogIsShown: $dialogIsShown)';
   }
 
   @override
@@ -148,12 +164,14 @@ class _$AuthStateImpl extends _AuthState {
             (identical(other.authIsLoading, authIsLoading) ||
                 other.authIsLoading == authIsLoading) &&
             (identical(other.usernnameIsFilled, usernnameIsFilled) ||
-                other.usernnameIsFilled == usernnameIsFilled));
+                other.usernnameIsFilled == usernnameIsFilled) &&
+            (identical(other.dialogIsShown, dialogIsShown) ||
+                other.dialogIsShown == dialogIsShown));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, isAuthenticate, authIsLoading, usernnameIsFilled);
+  int get hashCode => Object.hash(runtimeType, isAuthenticate, authIsLoading,
+      usernnameIsFilled, dialogIsShown);
 
   @JsonKey(ignore: true)
   @override
@@ -164,17 +182,20 @@ class _$AuthStateImpl extends _AuthState {
 
 abstract class _AuthState extends AuthState {
   const factory _AuthState(
-      {required final Option<Either<AppFailure, bool>> isAuthenticate,
+      {required final Option<Either<AppFailure, AuthModel>> isAuthenticate,
       required final bool authIsLoading,
-      required final bool usernnameIsFilled}) = _$AuthStateImpl;
+      required final bool usernnameIsFilled,
+      required final bool dialogIsShown}) = _$AuthStateImpl;
   const _AuthState._() : super._();
 
   @override
-  Option<Either<AppFailure, bool>> get isAuthenticate;
+  Option<Either<AppFailure, AuthModel>> get isAuthenticate;
   @override
   bool get authIsLoading;
   @override
   bool get usernnameIsFilled;
+  @override
+  bool get dialogIsShown;
   @override
   @JsonKey(ignore: true)
   _$$AuthStateImplCopyWith<_$AuthStateImpl> get copyWith =>

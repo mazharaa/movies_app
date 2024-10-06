@@ -1,5 +1,6 @@
 import 'package:injectable/injectable.dart';
 import 'package:movies_app/core/common/api_path_constants.dart';
+import 'package:movies_app/domain/auth/auth_model.dart';
 import 'package:movies_app/infrastructure/core/api_helper.dart';
 import 'package:movies_app/infrastructure/storage/secure_storage_controller.dart';
 
@@ -20,43 +21,56 @@ class AuthDataSources {
 
     final token = response.data["request_token"];
 
-    _secureStorage.setReqToken(token);
+    await _secureStorage.setReqToken(token);
   }
 
-  Future<bool> createSession(String password) async {
+  Future<AuthModel> createSession(String username, String password) async {
+    await _secureStorage.setUsername(username);
+
     final response = await _helper.get(
       path: ApiPathConstants.loginAuth,
       queryParameters: {
-        "username": _secureStorage.username,
+        "username": await _secureStorage.username,
         "password": password,
-        "request_token": _secureStorage.reqToken,
+        "request_token": await _secureStorage.reqToken,
       },
     );
 
-    final _response = response.data as Map<String, dynamic>;
+    final rawData = response.data as Map<String, dynamic>;
 
-    return _response['success'] as bool;
+    if (!rawData.containsKey('status_message')) {
+      final newEntries = <String, dynamic>{'status_message': 'Authenticated'};
+      rawData.addEntries(newEntries.entries);
+    }
+
+    final data = AuthModel.fromJson(rawData);
+
+    if (rawData['success']) {
+      return data;
+    } else {
+      throw Exception(rawData['status_message']);
+    }
   }
 
   Future<void> getSessionId() async {
     final response = await _helper.get(
       path: ApiPathConstants.createSession,
-      queryParameters: {"request_token": _secureStorage.reqToken},
+      queryParameters: {"request_token": await _secureStorage.reqToken},
     );
 
     final sessionId = response.data["session_id"];
 
-    _secureStorage.setSessionId(sessionId);
+    await _secureStorage.setSessionId(sessionId);
   }
 
   Future<void> getAccountId() async {
     final response = await _helper.get(
       path: ApiPathConstants.accountDetails,
-      queryParameters: {"session_id": _secureStorage.sessionId},
+      queryParameters: {"session_id": await _secureStorage.sessionId},
     );
 
     final accountId = response.data["id"];
 
-    _secureStorage.setAccountId(accountId);
+    await _secureStorage.setAccountId(accountId);
   }
 }

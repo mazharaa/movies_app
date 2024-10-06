@@ -20,7 +20,9 @@ class ApiResponseModel with _$ApiResponseModel {
     'original_title',
     'overview',
     'poster_path',
-    'status'
+    'status',
+    'success',
+    'id',
   ];
 
   static bool isFormatValid(dynamic data) {
@@ -63,12 +65,11 @@ class ApiResponseModel with _$ApiResponseModel {
         );
       }
     } else if (response.statusCode == 401) {
-      final _response = response.data as Map<String, dynamic>;
       return ApiResponseModel(
         status: 'Unauthorized',
         code: response.statusCode,
-        errorMsg: _response['stataus_message'] as String,
-        data: null,
+        errorMsg: response.data['status_message'] as String,
+        data: response.data as Map<String, dynamic>,
       );
     } else {
       return ApiResponseModel(

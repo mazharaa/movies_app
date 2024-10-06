@@ -42,19 +42,31 @@ class SecureStorageController {
 
   Future<void> setAccountId(int accountId) async {
     await _secureStorage.write(
-      key: _SecureStorageKeys.sessionId.name,
+      key: _SecureStorageKeys.accountId.name,
       value: accountId.toString(),
     );
   }
 
-  Future<String> get reqToken async =>
-      await _secureStorage.read(key: _SecureStorageKeys.reqToken.name) ?? "";
+  Future<String> get reqToken async {
+    final token =
+        await _secureStorage.read(key: _SecureStorageKeys.reqToken.name);
 
-  Future<String> get sessionId async =>
-      await _secureStorage.read(key: _SecureStorageKeys.sessionId.name) ?? "";
+    return token ?? "";
+  }
 
-  Future<String> get username async =>
-      await _secureStorage.read(key: _SecureStorageKeys.username.name) ?? "";
+  Future<String> get sessionId async {
+    final sessionId =
+        await _secureStorage.read(key: _SecureStorageKeys.sessionId.name);
+
+    return sessionId ?? "";
+  }
+
+  Future<String> get username async {
+    final username =
+        await _secureStorage.read(key: _SecureStorageKeys.username.name);
+
+    return username ?? "";
+  }
 
   Future<int> get accountId async {
     final idString = await _secureStorage.read(

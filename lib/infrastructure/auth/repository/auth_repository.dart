@@ -1,5 +1,6 @@
 import 'package:fpdart/fpdart.dart';
 import 'package:injectable/injectable.dart';
+import 'package:movies_app/domain/auth/auth_model.dart';
 import 'package:movies_app/domain/core/app_failure.dart';
 import 'package:movies_app/infrastructure/auth/data_sources/auth_data_sources.dart';
 
@@ -11,12 +12,13 @@ class AuthRepository {
     this._dataSources,
   );
 
-  Future<Either<AppFailure, bool>> loginUser(
+  Future<Either<AppFailure, AuthModel>> loginUser(
+    String username,
     String password,
   ) async {
     try {
       await _dataSources.getRequestToken();
-      final response = await _dataSources.createSession(password);
+      final response = await _dataSources.createSession(username, password);
       await _dataSources.getSessionId();
       await _dataSources.getAccountId();
 
