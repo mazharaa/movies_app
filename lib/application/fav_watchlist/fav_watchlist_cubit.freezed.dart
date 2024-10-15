@@ -19,7 +19,9 @@ mixin _$FavWatchlistState {
   List<PosterModel> get favMovie => throw _privateConstructorUsedError;
   List<PosterModel> get watchlist => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of FavWatchlistState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $FavWatchlistStateCopyWith<FavWatchlistState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -43,6 +45,8 @@ class _$FavWatchlistStateCopyWithImpl<$Res, $Val extends FavWatchlistState>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of FavWatchlistState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -81,6 +85,8 @@ class __$$FavWatchlistStateImplCopyWithImpl<$Res>
       $Res Function(_$FavWatchlistStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of FavWatchlistState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -147,7 +153,9 @@ class _$FavWatchlistStateImpl extends _FavWatchlistState {
       const DeepCollectionEquality().hash(_favMovie),
       const DeepCollectionEquality().hash(_watchlist));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of FavWatchlistState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$FavWatchlistStateImplCopyWith<_$FavWatchlistStateImpl> get copyWith =>
@@ -165,8 +173,11 @@ abstract class _FavWatchlistState extends FavWatchlistState {
   List<PosterModel> get favMovie;
   @override
   List<PosterModel> get watchlist;
+
+  /// Create a copy of FavWatchlistState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$FavWatchlistStateImplCopyWith<_$FavWatchlistStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

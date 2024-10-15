@@ -21,7 +21,9 @@ mixin _$PosterModel {
   String get image => throw _privateConstructorUsedError;
   String get backdrop => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PosterModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $PosterModelCopyWith<PosterModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -45,6 +47,8 @@ class _$PosterModelCopyWithImpl<$Res, $Val extends PosterModel>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of PosterModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -93,6 +97,8 @@ class __$$PosterModelImplCopyWithImpl<$Res>
       _$PosterModelImpl _value, $Res Function(_$PosterModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of PosterModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -161,7 +167,9 @@ class _$PosterModelImpl extends _PosterModel {
   @override
   int get hashCode => Object.hash(runtimeType, id, title, image, backdrop);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PosterModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$PosterModelImplCopyWith<_$PosterModelImpl> get copyWith =>
@@ -184,8 +192,11 @@ abstract class _PosterModel extends PosterModel {
   String get image;
   @override
   String get backdrop;
+
+  /// Create a copy of PosterModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$PosterModelImplCopyWith<_$PosterModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

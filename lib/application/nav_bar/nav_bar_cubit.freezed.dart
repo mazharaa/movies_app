@@ -18,7 +18,9 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$NavBarState {
   int get selectedIndex => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of NavBarState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $NavBarStateCopyWith<NavBarState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -42,6 +44,8 @@ class _$NavBarStateCopyWithImpl<$Res, $Val extends NavBarState>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of NavBarState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -75,6 +79,8 @@ class __$$NavbarStateImplCopyWithImpl<$Res>
       _$NavbarStateImpl _value, $Res Function(_$NavbarStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of NavBarState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -114,7 +120,9 @@ class _$NavbarStateImpl extends _NavbarState {
   @override
   int get hashCode => Object.hash(runtimeType, selectedIndex);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of NavBarState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$NavbarStateImplCopyWith<_$NavbarStateImpl> get copyWith =>
@@ -128,8 +136,11 @@ abstract class _NavbarState extends NavBarState {
 
   @override
   int get selectedIndex;
+
+  /// Create a copy of NavBarState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$NavbarStateImplCopyWith<_$NavbarStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

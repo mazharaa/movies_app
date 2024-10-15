@@ -25,7 +25,9 @@ mixin _$DetailsModel {
   String get image => throw _privateConstructorUsedError;
   String get backdrop => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DetailsModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $DetailsModelCopyWith<DetailsModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -57,6 +59,8 @@ class _$DetailsModelCopyWithImpl<$Res, $Val extends DetailsModel>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of DetailsModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -133,6 +137,8 @@ class __$$DetailsModelImplCopyWithImpl<$Res>
       _$DetailsModelImpl _value, $Res Function(_$DetailsModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DetailsModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -240,7 +246,9 @@ class _$DetailsModelImpl extends _DetailsModel {
   int get hashCode => Object.hash(runtimeType, id, title, releaseYear, runtime,
       genre, overview, image, backdrop);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DetailsModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$DetailsModelImplCopyWith<_$DetailsModelImpl> get copyWith =>
@@ -275,8 +283,11 @@ abstract class _DetailsModel extends DetailsModel {
   String get image;
   @override
   String get backdrop;
+
+  /// Create a copy of DetailsModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$DetailsModelImplCopyWith<_$DetailsModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

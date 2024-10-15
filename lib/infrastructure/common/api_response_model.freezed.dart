@@ -21,7 +21,9 @@ mixin _$ApiResponseModel {
   int? get code => throw _privateConstructorUsedError;
   dynamic get data => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ApiResponseModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ApiResponseModelCopyWith<ApiResponseModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -45,6 +47,8 @@ class _$ApiResponseModelCopyWithImpl<$Res, $Val extends ApiResponseModel>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ApiResponseModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -93,6 +97,8 @@ class __$$ApiResponseModelImplCopyWithImpl<$Res>
       $Res Function(_$ApiResponseModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ApiResponseModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -161,7 +167,9 @@ class _$ApiResponseModelImpl extends _ApiResponseModel {
   int get hashCode => Object.hash(runtimeType, status, errorMsg, code,
       const DeepCollectionEquality().hash(data));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ApiResponseModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ApiResponseModelImplCopyWith<_$ApiResponseModelImpl> get copyWith =>
@@ -185,8 +193,11 @@ abstract class _ApiResponseModel extends ApiResponseModel {
   int? get code;
   @override
   dynamic get data;
+
+  /// Create a copy of ApiResponseModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ApiResponseModelImplCopyWith<_$ApiResponseModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
