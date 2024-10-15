@@ -3,7 +3,7 @@ import 'package:fpdart/fpdart.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:movies_app/domain/common/poster/poster_model.dart';
-import 'package:movies_app/domain/core/app_failure.dart';
+import 'package:movies_app/domain/core/app_failure/app_failure.dart';
 import 'package:movies_app/domain/home/i_home_repository.dart';
 
 part 'home_state.dart';

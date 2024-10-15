@@ -1,7 +1,7 @@
 import 'package:fpdart/fpdart.dart';
 import 'package:injectable/injectable.dart';
 import 'package:movies_app/domain/auth/auth_model.dart';
-import 'package:movies_app/domain/core/app_failure.dart';
+import 'package:movies_app/domain/core/app_failure/app_failure.dart';
 import 'package:movies_app/infrastructure/auth/data_sources/auth_data_sources.dart';
 
 @lazySingleton

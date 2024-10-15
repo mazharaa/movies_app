@@ -1,7 +1,7 @@
 import 'package:fpdart/fpdart.dart';
 import 'package:injectable/injectable.dart';
 import 'package:movies_app/domain/common/poster/poster_model.dart';
-import 'package:movies_app/domain/core/app_failure.dart';
+import 'package:movies_app/domain/core/app_failure/app_failure.dart';
 import 'package:movies_app/domain/home/i_home_repository.dart';
 import 'package:movies_app/infrastructure/home/data_sources/home_data_sources.dart';
 
