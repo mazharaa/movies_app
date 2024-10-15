@@ -45,11 +45,7 @@ class AuthDataSources {
 
     final data = AuthModel.fromJson(rawData);
 
-    if (rawData['success']) {
-      return data;
-    } else {
-      throw Exception(rawData['status_message']);
-    }
+    return data;
   }
 
   Future<void> getSessionId() async {

@@ -20,7 +20,11 @@ class LoginScreen extends StatelessWidget {
       appBar: AppBar(
         leading: GestureDetector(
           child: const Icon(Icons.arrow_back_ios),
-          onTap: () => context.router.maybePop(),
+          onTap: () => context.router.maybePop().then(
+            (value) {
+              authCubit.resetAuth();
+            },
+          ),
         ),
         title: Text(
           'MoviesApp',
@@ -48,38 +52,33 @@ class LoginScreen extends StatelessWidget {
               },
               (repsonse) => repsonse.fold(
                 (failure) {
-                  if (state.dialogIsShown) {
+                  if (!state.authIsLoading) {
                     WidgetsBinding.instance.addPostFrameCallback((_) {
                       Navigator.of(context, rootNavigator: true).pop();
                     });
                   }
-                  authCubit.showsDialog(false);
                   failure.when(
                     fromServerSide: (value) {
-                      authCubit.authFailed();
                       return WidgetsBinding.instance.addPostFrameCallback((_) {
                         showDialog(
                           context: context,
-                          builder: (context) => Center(
-                            child: Text(value),
+                          builder: (context) => AlertDialog(
+                            content: Center(
+                              child: Text(
+                                value,
+                                style: context.textTheme.labelLarge?.copyWith(
+                                  color: ColorConst.black,
+                                ),
+                              ),
+                            ),
                           ),
                         );
                       });
                     },
+                    unauthorized: (value) {},
                   );
                 },
-                (response) {
-                  if (response.isAuthenticated) {
-                    context.router.push(const MainRoute());
-                  } else {
-                    showDialog(
-                      context: context,
-                      builder: (context) => Center(
-                        child: Text(response.statusMessage),
-                      ),
-                    );
-                  }
-                },
+                (response) => context.router.push(const MainRoute()),
               ),
             );
             return Stack(
@@ -120,7 +119,7 @@ class LoginScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-                    SizedBox(height: 20.w),
+                    SizedBox(height: 20.h),
                     SizedBox(
                       height: 50.h,
                       child: TextField(
@@ -154,63 +153,50 @@ class LoginScreen extends StatelessWidget {
                         obscureText: true,
                       ),
                     ),
-                    SizedBox(height: 20.w),
-                    ElevatedButton(
-                      onPressed: state.usernnameIsFilled
-                          ? () async {
-                              authCubit.loginUser(
-                                context
-                                    .read<AuthCubit>()
-                                    .usernameController
-                                    .text,
-                                context
-                                    .read<AuthCubit>()
-                                    .passwordController
-                                    .text,
-                              );
-                            }
-                          : null,
-                      style: ElevatedButton.styleFrom(
-                        minimumSize: Size(double.infinity, 50.h),
-                        backgroundColor: state.usernnameIsFilled
-                            ? ColorConst.blue
-                            : ColorConst.black,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(5),
-                        ),
-                      ),
-                      child: Text(
-                        'SIGN IN',
-                        style: context.textTheme.titleSmall?.copyWith(
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
+                    SizedBox(
+                      height: 70.h,
+                      child: state.showAuthError
+                          ? Center(
+                              child: Text(
+                                state.authErrorMsg,
+                                style: context.textTheme.bodyLarge
+                                    ?.copyWith(color: ColorConst.red),
+                              ),
+                            )
+                          : const SizedBox.shrink(),
                     ),
                   ],
                 ),
-                // Center(
-                //     child: Container(
-                //   height: 150.h,
-                //   width: 150.w,
-                //   decoration: BoxDecoration(
-                //     border: Border.all(),
-                //     color: ColorConst.lightGrey.withOpacity(0.9),
-                //     borderRadius: BorderRadius.circular(10),
-                //   ),
-                //   child: Column(
-                //     mainAxisAlignment: MainAxisAlignment.center,
-                //     children: [
-                //       UiHelper.loading(height: 50.h, width: 50.w),
-                //       SizedBox(height: 20.h),
-                //       Text(
-                //         'Signing In...',
-                //         style: context.textTheme.titleSmall?.copyWith(
-                //           color: ColorConst.darkGrey,
-                //         ),
-                //       ),
-                //     ],
-                //   ),
-                // )),
+                Positioned(
+                  bottom: 150,
+                  right: 0,
+                  left: 0,
+                  child: ElevatedButton(
+                    onPressed: state.usernnameIsFilled
+                        ? () async {
+                            authCubit.loginUser(
+                              context.read<AuthCubit>().usernameController.text,
+                              context.read<AuthCubit>().passwordController.text,
+                            );
+                          }
+                        : null,
+                    style: ElevatedButton.styleFrom(
+                      minimumSize: Size(double.infinity, 50.h),
+                      backgroundColor: state.usernnameIsFilled
+                          ? ColorConst.blue
+                          : ColorConst.black,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                    ),
+                    child: Text(
+                      'SIGN IN',
+                      style: context.textTheme.titleSmall?.copyWith(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                )
               ],
             );
           },

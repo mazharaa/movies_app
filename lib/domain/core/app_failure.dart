@@ -5,4 +5,5 @@ part 'app_failure.freezed.dart';
 @freezed
 class AppFailure with _$AppFailure {
   const factory AppFailure.fromServerSide(String value) = _FromServerSide;
+  const factory AppFailure.unauthorized(String value) = _Unauthorized;
 }

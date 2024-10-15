@@ -19,6 +19,11 @@ class AuthRepository {
     try {
       await _dataSources.getRequestToken();
       final response = await _dataSources.createSession(username, password);
+
+      if (response.statusMessage != 'Authenticated') {
+        return left(AppFailure.unauthorized(response.statusMessage));
+      }
+
       await _dataSources.getSessionId();
       await _dataSources.getAccountId();
 

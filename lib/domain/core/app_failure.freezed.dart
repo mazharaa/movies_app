@@ -20,37 +20,45 @@ mixin _$AppFailure {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String value) fromServerSide,
+    required TResult Function(String value) unauthorized,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String value)? fromServerSide,
+    TResult? Function(String value)? unauthorized,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String value)? fromServerSide,
+    TResult Function(String value)? unauthorized,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_FromServerSide value) fromServerSide,
+    required TResult Function(_Unauthorized value) unauthorized,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_FromServerSide value)? fromServerSide,
+    TResult? Function(_Unauthorized value)? unauthorized,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_FromServerSide value)? fromServerSide,
+    TResult Function(_Unauthorized value)? unauthorized,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of AppFailure
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $AppFailureCopyWith<AppFailure> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -74,6 +82,8 @@ class _$AppFailureCopyWithImpl<$Res, $Val extends AppFailure>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of AppFailure
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -107,6 +117,8 @@ class __$$FromServerSideImplCopyWithImpl<$Res>
       _$FromServerSideImpl _value, $Res Function(_$FromServerSideImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of AppFailure
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -145,7 +157,9 @@ class _$FromServerSideImpl implements _FromServerSide {
   @override
   int get hashCode => Object.hash(runtimeType, value);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of AppFailure
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$FromServerSideImplCopyWith<_$FromServerSideImpl> get copyWith =>
@@ -156,6 +170,7 @@ class _$FromServerSideImpl implements _FromServerSide {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String value) fromServerSide,
+    required TResult Function(String value) unauthorized,
   }) {
     return fromServerSide(value);
   }
@@ -164,6 +179,7 @@ class _$FromServerSideImpl implements _FromServerSide {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String value)? fromServerSide,
+    TResult? Function(String value)? unauthorized,
   }) {
     return fromServerSide?.call(value);
   }
@@ -172,6 +188,7 @@ class _$FromServerSideImpl implements _FromServerSide {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String value)? fromServerSide,
+    TResult Function(String value)? unauthorized,
     required TResult orElse(),
   }) {
     if (fromServerSide != null) {
@@ -184,6 +201,7 @@ class _$FromServerSideImpl implements _FromServerSide {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_FromServerSide value) fromServerSide,
+    required TResult Function(_Unauthorized value) unauthorized,
   }) {
     return fromServerSide(this);
   }
@@ -192,6 +210,7 @@ class _$FromServerSideImpl implements _FromServerSide {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_FromServerSide value)? fromServerSide,
+    TResult? Function(_Unauthorized value)? unauthorized,
   }) {
     return fromServerSide?.call(this);
   }
@@ -200,6 +219,7 @@ class _$FromServerSideImpl implements _FromServerSide {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_FromServerSide value)? fromServerSide,
+    TResult Function(_Unauthorized value)? unauthorized,
     required TResult orElse(),
   }) {
     if (fromServerSide != null) {
@@ -214,8 +234,155 @@ abstract class _FromServerSide implements AppFailure {
 
   @override
   String get value;
+
+  /// Create a copy of AppFailure
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$FromServerSideImplCopyWith<_$FromServerSideImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$UnauthorizedImplCopyWith<$Res>
+    implements $AppFailureCopyWith<$Res> {
+  factory _$$UnauthorizedImplCopyWith(
+          _$UnauthorizedImpl value, $Res Function(_$UnauthorizedImpl) then) =
+      __$$UnauthorizedImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String value});
+}
+
+/// @nodoc
+class __$$UnauthorizedImplCopyWithImpl<$Res>
+    extends _$AppFailureCopyWithImpl<$Res, _$UnauthorizedImpl>
+    implements _$$UnauthorizedImplCopyWith<$Res> {
+  __$$UnauthorizedImplCopyWithImpl(
+      _$UnauthorizedImpl _value, $Res Function(_$UnauthorizedImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of AppFailure
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? value = null,
+  }) {
+    return _then(_$UnauthorizedImpl(
+      null == value
+          ? _value.value
+          : value // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$UnauthorizedImpl implements _Unauthorized {
+  const _$UnauthorizedImpl(this.value);
+
+  @override
+  final String value;
+
+  @override
+  String toString() {
+    return 'AppFailure.unauthorized(value: $value)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$UnauthorizedImpl &&
+            (identical(other.value, value) || other.value == value));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, value);
+
+  /// Create a copy of AppFailure
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$UnauthorizedImplCopyWith<_$UnauthorizedImpl> get copyWith =>
+      __$$UnauthorizedImplCopyWithImpl<_$UnauthorizedImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String value) fromServerSide,
+    required TResult Function(String value) unauthorized,
+  }) {
+    return unauthorized(value);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String value)? fromServerSide,
+    TResult? Function(String value)? unauthorized,
+  }) {
+    return unauthorized?.call(value);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String value)? fromServerSide,
+    TResult Function(String value)? unauthorized,
+    required TResult orElse(),
+  }) {
+    if (unauthorized != null) {
+      return unauthorized(value);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_FromServerSide value) fromServerSide,
+    required TResult Function(_Unauthorized value) unauthorized,
+  }) {
+    return unauthorized(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_FromServerSide value)? fromServerSide,
+    TResult? Function(_Unauthorized value)? unauthorized,
+  }) {
+    return unauthorized?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_FromServerSide value)? fromServerSide,
+    TResult Function(_Unauthorized value)? unauthorized,
+    required TResult orElse(),
+  }) {
+    if (unauthorized != null) {
+      return unauthorized(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Unauthorized implements AppFailure {
+  const factory _Unauthorized(final String value) = _$UnauthorizedImpl;
+
+  @override
+  String get value;
+
+  /// Create a copy of AppFailure
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$UnauthorizedImplCopyWith<_$UnauthorizedImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

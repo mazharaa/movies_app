@@ -59,6 +59,7 @@ class HomeView extends StatelessWidget {
                     (response) => response.fold(
                       (failure) => failure.when(
                         fromServerSide: (value) => Center(child: Text(value)),
+                        unauthorized: (value) => const SizedBox.shrink(),
                       ),
                       (response) => Builder(
                         builder: (context) {
@@ -158,6 +159,7 @@ class HomeView extends StatelessWidget {
                             (failure) => failure.when(
                               fromServerSide: (value) =>
                                   Center(child: Text(value)),
+                              unauthorized: (value) => const SizedBox.shrink(),
                             ),
                             (response) => ListView.builder(
                               shrinkWrap: true,
@@ -212,6 +214,7 @@ class HomeView extends StatelessWidget {
                             (failure) => failure.when(
                               fromServerSide: (value) =>
                                   Center(child: Text(value)),
+                              unauthorized: (value) => const SizedBox.shrink(),
                             ),
                             (response) => ListView.builder(
                               shrinkWrap: true,
@@ -266,6 +269,7 @@ class HomeView extends StatelessWidget {
                             (failure) => failure.when(
                               fromServerSide: (value) =>
                                   Center(child: Text(value)),
+                              unauthorized: (value) => const SizedBox.shrink(),
                             ),
                             (response) => ListView.builder(
                               shrinkWrap: true,

@@ -39,6 +39,7 @@ class DetailsScreen extends StatelessWidget {
               (detailsResponse) => detailsResponse.fold(
                 (failure) => failure.when(
                   fromServerSide: (value) => Text(value),
+                  unauthorized: (value) => const SizedBox.shrink(),
                 ),
                 (detailsData) => SingleChildScrollView(
                   child: Column(
@@ -197,6 +198,7 @@ class DetailsScreen extends StatelessWidget {
                           (similarResponse) => similarResponse.fold(
                             (failure) => failure.when(
                               fromServerSide: (value) => Text(value),
+                              unauthorized: (value) => const SizedBox.shrink(),
                             ),
                             (similarData) => GridView.builder(
                               shrinkWrap: true,
