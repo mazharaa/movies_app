@@ -22,7 +22,6 @@ class ApiResponseModel with _$ApiResponseModel {
     'poster_path',
     'status',
     'success',
-    'id',
   ];
 
   static bool isFormatValid(dynamic data) {

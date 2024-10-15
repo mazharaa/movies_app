@@ -8,20 +8,15 @@ class AuthState with _$AuthState {
     required Option<Either<AppFailure, AuthModel>> isAuthenticate,
     required bool authIsLoading,
     required bool usernnameIsFilled,
-    required bool dialogIsShown,
+    required bool showAuthError,
+    required String authErrorMsg,
   }) = _AuthState;
 
   factory AuthState.initial() => AuthState(
         isAuthenticate: none(),
         authIsLoading: false,
         usernnameIsFilled: false,
-        dialogIsShown: false,
-      );
-
-  AuthState get unmodified => copyWith(
-        isAuthenticate: none(),
-        authIsLoading: false,
-        usernnameIsFilled: false,
-        dialogIsShown: false,
+        showAuthError: false,
+        authErrorMsg: '',
       );
 }

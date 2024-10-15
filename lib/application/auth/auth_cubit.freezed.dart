@@ -20,9 +20,12 @@ mixin _$AuthState {
       throw _privateConstructorUsedError;
   bool get authIsLoading => throw _privateConstructorUsedError;
   bool get usernnameIsFilled => throw _privateConstructorUsedError;
-  bool get dialogIsShown => throw _privateConstructorUsedError;
+  bool get showAuthError => throw _privateConstructorUsedError;
+  String get authErrorMsg => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of AuthState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $AuthStateCopyWith<AuthState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -36,7 +39,8 @@ abstract class $AuthStateCopyWith<$Res> {
       {Option<Either<AppFailure, AuthModel>> isAuthenticate,
       bool authIsLoading,
       bool usernnameIsFilled,
-      bool dialogIsShown});
+      bool showAuthError,
+      String authErrorMsg});
 }
 
 /// @nodoc
@@ -49,13 +53,16 @@ class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of AuthState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? isAuthenticate = null,
     Object? authIsLoading = null,
     Object? usernnameIsFilled = null,
-    Object? dialogIsShown = null,
+    Object? showAuthError = null,
+    Object? authErrorMsg = null,
   }) {
     return _then(_value.copyWith(
       isAuthenticate: null == isAuthenticate
@@ -70,10 +77,14 @@ class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
           ? _value.usernnameIsFilled
           : usernnameIsFilled // ignore: cast_nullable_to_non_nullable
               as bool,
-      dialogIsShown: null == dialogIsShown
-          ? _value.dialogIsShown
-          : dialogIsShown // ignore: cast_nullable_to_non_nullable
+      showAuthError: null == showAuthError
+          ? _value.showAuthError
+          : showAuthError // ignore: cast_nullable_to_non_nullable
               as bool,
+      authErrorMsg: null == authErrorMsg
+          ? _value.authErrorMsg
+          : authErrorMsg // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -90,7 +101,8 @@ abstract class _$$AuthStateImplCopyWith<$Res>
       {Option<Either<AppFailure, AuthModel>> isAuthenticate,
       bool authIsLoading,
       bool usernnameIsFilled,
-      bool dialogIsShown});
+      bool showAuthError,
+      String authErrorMsg});
 }
 
 /// @nodoc
@@ -101,13 +113,16 @@ class __$$AuthStateImplCopyWithImpl<$Res>
       _$AuthStateImpl _value, $Res Function(_$AuthStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of AuthState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? isAuthenticate = null,
     Object? authIsLoading = null,
     Object? usernnameIsFilled = null,
-    Object? dialogIsShown = null,
+    Object? showAuthError = null,
+    Object? authErrorMsg = null,
   }) {
     return _then(_$AuthStateImpl(
       isAuthenticate: null == isAuthenticate
@@ -122,10 +137,14 @@ class __$$AuthStateImplCopyWithImpl<$Res>
           ? _value.usernnameIsFilled
           : usernnameIsFilled // ignore: cast_nullable_to_non_nullable
               as bool,
-      dialogIsShown: null == dialogIsShown
-          ? _value.dialogIsShown
-          : dialogIsShown // ignore: cast_nullable_to_non_nullable
+      showAuthError: null == showAuthError
+          ? _value.showAuthError
+          : showAuthError // ignore: cast_nullable_to_non_nullable
               as bool,
+      authErrorMsg: null == authErrorMsg
+          ? _value.authErrorMsg
+          : authErrorMsg // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -137,7 +156,8 @@ class _$AuthStateImpl extends _AuthState {
       {required this.isAuthenticate,
       required this.authIsLoading,
       required this.usernnameIsFilled,
-      required this.dialogIsShown})
+      required this.showAuthError,
+      required this.authErrorMsg})
       : super._();
 
   @override
@@ -147,11 +167,13 @@ class _$AuthStateImpl extends _AuthState {
   @override
   final bool usernnameIsFilled;
   @override
-  final bool dialogIsShown;
+  final bool showAuthError;
+  @override
+  final String authErrorMsg;
 
   @override
   String toString() {
-    return 'AuthState(isAuthenticate: $isAuthenticate, authIsLoading: $authIsLoading, usernnameIsFilled: $usernnameIsFilled, dialogIsShown: $dialogIsShown)';
+    return 'AuthState(isAuthenticate: $isAuthenticate, authIsLoading: $authIsLoading, usernnameIsFilled: $usernnameIsFilled, showAuthError: $showAuthError, authErrorMsg: $authErrorMsg)';
   }
 
   @override
@@ -165,15 +187,19 @@ class _$AuthStateImpl extends _AuthState {
                 other.authIsLoading == authIsLoading) &&
             (identical(other.usernnameIsFilled, usernnameIsFilled) ||
                 other.usernnameIsFilled == usernnameIsFilled) &&
-            (identical(other.dialogIsShown, dialogIsShown) ||
-                other.dialogIsShown == dialogIsShown));
+            (identical(other.showAuthError, showAuthError) ||
+                other.showAuthError == showAuthError) &&
+            (identical(other.authErrorMsg, authErrorMsg) ||
+                other.authErrorMsg == authErrorMsg));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, isAuthenticate, authIsLoading,
-      usernnameIsFilled, dialogIsShown);
+      usernnameIsFilled, showAuthError, authErrorMsg);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of AuthState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$AuthStateImplCopyWith<_$AuthStateImpl> get copyWith =>
@@ -185,7 +211,8 @@ abstract class _AuthState extends AuthState {
       {required final Option<Either<AppFailure, AuthModel>> isAuthenticate,
       required final bool authIsLoading,
       required final bool usernnameIsFilled,
-      required final bool dialogIsShown}) = _$AuthStateImpl;
+      required final bool showAuthError,
+      required final String authErrorMsg}) = _$AuthStateImpl;
   const _AuthState._() : super._();
 
   @override
@@ -195,9 +222,14 @@ abstract class _AuthState extends AuthState {
   @override
   bool get usernnameIsFilled;
   @override
-  bool get dialogIsShown;
+  bool get showAuthError;
   @override
-  @JsonKey(ignore: true)
+  String get authErrorMsg;
+
+  /// Create a copy of AuthState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$AuthStateImplCopyWith<_$AuthStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

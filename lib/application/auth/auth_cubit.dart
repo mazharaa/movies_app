@@ -1,10 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
-import 'package:movies_app/core/utils/ui_helper.dart';
 import 'package:movies_app/domain/auth/auth_model.dart';
 import 'package:movies_app/domain/core/app_failure.dart';
 import 'package:movies_app/infrastructure/auth/repository/auth_repository.dart';
@@ -33,39 +31,42 @@ class AuthCubit extends Cubit<AuthState> {
         : emit(state.copyWith(usernnameIsFilled: true));
   }
 
-  void showsDialog(bool truOrFalse) {
-    emit(state.copyWith(dialogIsShown: truOrFalse));
-    // showDialog(
-    //   context: context,
-    //   barrierDismissible: false,
-    //   builder: (context) => Center(
-    //     child: UiHelper.loading(height: 50.h, width: 50.w),
-    //   ),
-    // );
-  }
-
-  void dismissDialog(bool dialogIsShown, BuildContext context) {
-    if (dialogIsShown) {
-      Navigator.of(context, rootNavigator: true).pop();
-      emit(state.copyWith(dialogIsShown: false));
-    }
-  }
-
   Future<void> loginUser(String username, String password) async {
     emit(state.copyWith(
       authIsLoading: true,
-      dialogIsShown: true,
+      isAuthenticate: none(),
+      showAuthError: false,
     ));
 
+    String message = '';
     final authResponse = await _authRepository.loginUser(username, password);
+    authResponse.getLeft().fold(
+      () {},
+      (t) {
+        t.when(
+          fromServerSide: (value) {},
+          unauthorized: (value) {
+            message = value;
+          },
+        );
+      },
+    );
 
     emit(state.copyWith(
       isAuthenticate: optionOf(authResponse),
       authIsLoading: false,
+      showAuthError: authResponse.getLeft().isSome(),
+      authErrorMsg: message,
     ));
   }
 
-  void authFailed() {
-    emit(state.copyWith(isAuthenticate: none()));
+  void resetAuth() {
+    usernameController.clear();
+    passwordController.clear();
+    emit(state.copyWith(
+      isAuthenticate: none(),
+      showAuthError: false,
+      authErrorMsg: '',
+    ));
   }
 }
