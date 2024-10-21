@@ -8,6 +8,7 @@ class AuthState with _$AuthState {
     required Option<Either<AppFailure, AuthModel>> isAuthenticate,
     required bool authIsLoading,
     required bool usernnameIsFilled,
+    required bool passwordIsFilled,
     required bool showAuthError,
     required String authErrorMsg,
   }) = _AuthState;
@@ -16,6 +17,7 @@ class AuthState with _$AuthState {
         isAuthenticate: none(),
         authIsLoading: false,
         usernnameIsFilled: false,
+        passwordIsFilled: false,
         showAuthError: false,
         authErrorMsg: '',
       );

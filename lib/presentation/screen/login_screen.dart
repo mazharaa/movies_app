@@ -172,7 +172,7 @@ class LoginScreen extends StatelessWidget {
                   right: 0,
                   left: 0,
                   child: ElevatedButton(
-                    onPressed: state.usernnameIsFilled
+                    onPressed: state.usernnameIsFilled && state.passwordIsFilled
                         ? () async {
                             authCubit.loginUser(
                               context.read<AuthCubit>().usernameController.text,

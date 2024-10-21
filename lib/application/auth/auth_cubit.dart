@@ -22,13 +22,22 @@ class AuthCubit extends Cubit<AuthState> {
         fillUsername(usernameController.text);
       });
 
-    passwordController = TextEditingController()..addListener(() {});
+    passwordController = TextEditingController()
+      ..addListener(() {
+        fillPassword(passwordController.text);
+      });
   }
 
   void fillUsername(String val) {
     val.isEmpty
         ? emit(state.copyWith(usernnameIsFilled: false))
         : emit(state.copyWith(usernnameIsFilled: true));
+  }
+
+  void fillPassword(String val) {
+    val.isEmpty
+        ? emit(state.copyWith(passwordIsFilled: false))
+        : emit(state.copyWith(passwordIsFilled: true));
   }
 
   Future<void> loginUser(String username, String password) async {

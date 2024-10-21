@@ -20,6 +20,7 @@ mixin _$AuthState {
       throw _privateConstructorUsedError;
   bool get authIsLoading => throw _privateConstructorUsedError;
   bool get usernnameIsFilled => throw _privateConstructorUsedError;
+  bool get passwordIsFilled => throw _privateConstructorUsedError;
   bool get showAuthError => throw _privateConstructorUsedError;
   String get authErrorMsg => throw _privateConstructorUsedError;
 
@@ -39,6 +40,7 @@ abstract class $AuthStateCopyWith<$Res> {
       {Option<Either<AppFailure, AuthModel>> isAuthenticate,
       bool authIsLoading,
       bool usernnameIsFilled,
+      bool passwordIsFilled,
       bool showAuthError,
       String authErrorMsg});
 }
@@ -61,6 +63,7 @@ class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
     Object? isAuthenticate = null,
     Object? authIsLoading = null,
     Object? usernnameIsFilled = null,
+    Object? passwordIsFilled = null,
     Object? showAuthError = null,
     Object? authErrorMsg = null,
   }) {
@@ -76,6 +79,10 @@ class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
       usernnameIsFilled: null == usernnameIsFilled
           ? _value.usernnameIsFilled
           : usernnameIsFilled // ignore: cast_nullable_to_non_nullable
+              as bool,
+      passwordIsFilled: null == passwordIsFilled
+          ? _value.passwordIsFilled
+          : passwordIsFilled // ignore: cast_nullable_to_non_nullable
               as bool,
       showAuthError: null == showAuthError
           ? _value.showAuthError
@@ -101,6 +108,7 @@ abstract class _$$AuthStateImplCopyWith<$Res>
       {Option<Either<AppFailure, AuthModel>> isAuthenticate,
       bool authIsLoading,
       bool usernnameIsFilled,
+      bool passwordIsFilled,
       bool showAuthError,
       String authErrorMsg});
 }
@@ -121,6 +129,7 @@ class __$$AuthStateImplCopyWithImpl<$Res>
     Object? isAuthenticate = null,
     Object? authIsLoading = null,
     Object? usernnameIsFilled = null,
+    Object? passwordIsFilled = null,
     Object? showAuthError = null,
     Object? authErrorMsg = null,
   }) {
@@ -136,6 +145,10 @@ class __$$AuthStateImplCopyWithImpl<$Res>
       usernnameIsFilled: null == usernnameIsFilled
           ? _value.usernnameIsFilled
           : usernnameIsFilled // ignore: cast_nullable_to_non_nullable
+              as bool,
+      passwordIsFilled: null == passwordIsFilled
+          ? _value.passwordIsFilled
+          : passwordIsFilled // ignore: cast_nullable_to_non_nullable
               as bool,
       showAuthError: null == showAuthError
           ? _value.showAuthError
@@ -156,6 +169,7 @@ class _$AuthStateImpl extends _AuthState {
       {required this.isAuthenticate,
       required this.authIsLoading,
       required this.usernnameIsFilled,
+      required this.passwordIsFilled,
       required this.showAuthError,
       required this.authErrorMsg})
       : super._();
@@ -167,13 +181,15 @@ class _$AuthStateImpl extends _AuthState {
   @override
   final bool usernnameIsFilled;
   @override
+  final bool passwordIsFilled;
+  @override
   final bool showAuthError;
   @override
   final String authErrorMsg;
 
   @override
   String toString() {
-    return 'AuthState(isAuthenticate: $isAuthenticate, authIsLoading: $authIsLoading, usernnameIsFilled: $usernnameIsFilled, showAuthError: $showAuthError, authErrorMsg: $authErrorMsg)';
+    return 'AuthState(isAuthenticate: $isAuthenticate, authIsLoading: $authIsLoading, usernnameIsFilled: $usernnameIsFilled, passwordIsFilled: $passwordIsFilled, showAuthError: $showAuthError, authErrorMsg: $authErrorMsg)';
   }
 
   @override
@@ -187,6 +203,8 @@ class _$AuthStateImpl extends _AuthState {
                 other.authIsLoading == authIsLoading) &&
             (identical(other.usernnameIsFilled, usernnameIsFilled) ||
                 other.usernnameIsFilled == usernnameIsFilled) &&
+            (identical(other.passwordIsFilled, passwordIsFilled) ||
+                other.passwordIsFilled == passwordIsFilled) &&
             (identical(other.showAuthError, showAuthError) ||
                 other.showAuthError == showAuthError) &&
             (identical(other.authErrorMsg, authErrorMsg) ||
@@ -195,7 +213,7 @@ class _$AuthStateImpl extends _AuthState {
 
   @override
   int get hashCode => Object.hash(runtimeType, isAuthenticate, authIsLoading,
-      usernnameIsFilled, showAuthError, authErrorMsg);
+      usernnameIsFilled, passwordIsFilled, showAuthError, authErrorMsg);
 
   /// Create a copy of AuthState
   /// with the given fields replaced by the non-null parameter values.
@@ -211,6 +229,7 @@ abstract class _AuthState extends AuthState {
       {required final Option<Either<AppFailure, AuthModel>> isAuthenticate,
       required final bool authIsLoading,
       required final bool usernnameIsFilled,
+      required final bool passwordIsFilled,
       required final bool showAuthError,
       required final String authErrorMsg}) = _$AuthStateImpl;
   const _AuthState._() : super._();
@@ -221,6 +240,8 @@ abstract class _AuthState extends AuthState {
   bool get authIsLoading;
   @override
   bool get usernnameIsFilled;
+  @override
+  bool get passwordIsFilled;
   @override
   bool get showAuthError;
   @override
